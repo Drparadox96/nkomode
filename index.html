@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nkomode - Dashboard & Frontend</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between">
+    <h1 class="text-xl font-bold">Nkomode</h1>
+    <div class="space-x-4">
+      <button onclick="showSection('dashboard')" class="hover:underline">Dashboard</button>
+      <button onclick="showSection('frontend')" class="hover:underline">Frontend</button>
+    </div>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="flex-1 p-6">
+    <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+    <form id="contentForm" class="bg-white p-6 rounded-lg shadow-md max-w-md space-y-4">
+      <input id="title" type="text" placeholder="Title" class="w-full border p-2 rounded" required>
+      <input id="thumbnail" type="url" placeholder="Thumbnail URL" class="w-full border p-2 rounded" required>
+      <input id="link" type="url" placeholder="Mega Download Link" class="w-full border p-2 rounded" required>
+      <textarea id="description" placeholder="Description" class="w-full border p-2 rounded"></textarea>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Add Content</button>
+    </form>
+
+    <div class="mt-6">
+      <h3 class="text-xl font-bold mb-2">Manage Content</h3>
+      <ul id="contentList" class="space-y-2"></ul>
+    </div>
+  </section>
+
+  <!-- Frontend Section -->
+  <section id="frontend" class="hidden flex-1 p-6">
+    <h2 class="text-2xl font-bold mb-4">Latest Content</h2>
+    <div id="frontendContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- Script -->
+  <script>
+    // Initial JSON storage
+    let contentData = JSON.parse(localStorage.getItem("contentData")) || [];
+
+    // Toggle sections
+    function showSection(section) {
+      document.getElementById("dashboard").classList.add("hidden");
+      document.getElementById("frontend").classList.add("hidden");
+      document.getElementById(section).classList.remove("hidden");
+      if (section === "frontend") renderFrontend();
+    }
+
+    // Render Dashboard list
+    function renderDashboard() {
+      const list = document.getElementById("contentList");
+      list.innerHTML = "";
+      contentData.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = "bg-gray-50 p-4 rounded flex justify-between items-center shadow";
+        li.innerHTML = `
+          <div>
+            <p class="font-bold">${item.title}</p>
+            <p class="text-sm text-gray-600">${item.description}</p>
+          </div>
+          <button onclick="deleteItem(${index})" class="text-red-600">Delete</button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    // Render Frontend grid
+    function renderFrontend() {
+      const container = document.getElementById("frontendContent");
+      container.innerHTML = "";
+      contentData.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-lg shadow-md overflow-hidden";
+        card.innerHTML = `
+          <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold">${item.title}</h3>
+            <p class="text-sm text-gray-600 mb-2">${item.description}</p>
+            <a href="${item.link}" target="_blank" class="block text-center bg-green-600 text-white py-2 rounded">Download</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Handle form submission
+    document.getElementById("contentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const newItem = {
+        title: document.getElementById("title").value,
+        thumbnail: document.getElementById("thumbnail").value,
+        link: document.getElementById("link").value,
+        description: document.getElementById("description").value
+      };
+      contentData.push(newItem);
+      localStorage.setItem("contentData", JSON.stringify(contentData));
+      this.reset();
+      renderDashboard();
+    });
+
+    // Delete item
+    function deleteItem(index) {
+      contentData.splice(index, 1);
+      localStorage.setItem("contentData", JSON.stringify(contentData));
+      renderDashboard();
+    }
+
+    // Initial render
+    renderDashboard();
+  </script>
+</body>
+</html>
