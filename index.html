@@ -2,87 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nkomode Videos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nkomode GPT – Free AI Hub (LLaMA, DeepSeek R1 & GPT-5)</title>
+  <meta name="description" content="Nkomode GPT is your free AI hub. Chat with Meta LLaMA, DeepSeek R1, and GPT-5 in one place – fast, free, and simple.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 min-h-screen p-6">
-  <div class="max-w-3xl mx-auto">
-    <!-- Header -->
-    <header class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold text-gray-800">📹 Nkomode Videos</h1>
-      <button id="dashboardBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</button>
-    </header>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">Nkomode GPT</h1>
+      <nav>
+        <a href="#features" class="px-3 text-gray-700 hover:text-blue-600">Features</a>
+        <a href="#try" class="px-3 text-gray-700 hover:text-blue-600">Try Free</a>
+        <a href="#about" class="px-3 text-gray-700 hover:text-blue-600">About</a>
+        <a href="#contact" class="px-3 text-gray-700 hover:text-blue-600">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Video list -->
-    <section id="videoList" class="grid gap-4"></section>
+  <!-- Hero Section -->
+  <section class="text-center py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+    <h2 class="text-4xl font-bold text-gray-900">Your Free AI Hub</h2>
+    <p class="mt-4 text-lg text-gray-600">
+      Access <strong>Meta LLaMA</strong>, <strong>DeepSeek R1</strong>, and <strong>GPT-5</strong> – all in one place.  
+      Fast, free, and simple.
+    </p>
+    <a href="#try" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700">
+      Try Nkomode GPT Free
+    </a>
+  </section>
 
-    <!-- Dashboard (hidden by default) -->
-    <section id="dashboard" class="hidden mt-10 p-6 bg-white shadow rounded">
-      <h2 class="text-xl font-semibold mb-4">Dashboard</h2>
-      <form id="addForm" class="flex gap-2 mb-4">
-        <input type="text" id="title" placeholder="Video title" class="flex-1 border rounded px-3 py-2">
-        <input type="url" id="url" placeholder="Video URL" class="flex-1 border rounded px-3 py-2">
-        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Add</button>
-      </form>
-      <pre id="jsonOutput" class="bg-gray-100 p-3 rounded text-sm overflow-x-auto"></pre>
-    </section>
-  </div>
+  <!-- Features -->
+  <section id="features" class="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-3 gap-8">
+    <div class="bg-white p-6 rounded-2xl shadow">
+      <h3 class="text-xl font-bold text-blue-600">Meta LLaMA</h3>
+      <p class="mt-2 text-gray-600">Open-source AI with speed and accuracy. Great for quick responses and research.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow">
+      <h3 class="text-xl font-bold text-blue-600">DeepSeek R1</h3>
+      <p class="mt-2 text-gray-600">Efficient reasoning AI, perfect for problem-solving, logic, and technical tasks.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow">
+      <h3 class="text-xl font-bold text-blue-600">GPT-5</h3>
+      <p class="mt-2 text-gray-600">The next generation of AI – natural, intelligent, and powerful conversations.</p>
+    </div>
+  </section>
 
-  <script>
-    // Fake "content.json"
-    let content = {
-      "videos": [
-        {"title": "Funny Meme Compilation", "url": "https://mega.nz/file/example1"},
-        {"title": "Ghana Viral Clip", "url": "https://mega.nz/file/example2"}
-      ]
-    };
+  <!-- Try Section -->
+  <section id="try" class="bg-blue-600 text-white text-center py-16">
+    <h2 class="text-3xl font-bold">Start Chatting Free</h2>
+    <p class="mt-4 text-lg">No sign-up required. Just click and start using Nkomode GPT instantly.</p>
+    <a href="https://nkomode.com" target="_blank" class="mt-6 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">
+      Launch Nkomode GPT
+    </a>
+  </section>
 
-    const videoList = document.getElementById("videoList");
-    const dashboardBtn = document.getElementById("dashboardBtn");
-    const dashboard = document.getElementById("dashboard");
-    const addForm = document.getElementById("addForm");
-    const jsonOutput = document.getElementById("jsonOutput");
+  <!-- About -->
+  <section id="about" class="max-w-4xl mx-auto py-16 px-6">
+    <h2 class="text-2xl font-bold text-gray-900">About Nkomode GPT</h2>
+    <p class="mt-4 text-gray-600">
+      Nkomode GPT is a free AI platform that brings together multiple models – Meta LLaMA, DeepSeek R1, and GPT-5 – 
+      giving you the freedom to choose the right AI for your needs. Whether it’s writing, research, coding, or casual chat, 
+      Nkomode GPT is your go-to hub.
+    </p>
+  </section>
 
-    // Render videos
-    function renderVideos() {
-      videoList.innerHTML = "";
-      content.videos.forEach(v => {
-        const card = document.createElement("div");
-        card.className = "p-4 bg-white rounded shadow flex justify-between items-center";
-        card.innerHTML = `
-          <span class="font-medium">${v.title}</span>
-          <a href="${v.url}" target="_blank" class="text-blue-600 hover:underline">Download</a>
-        `;
-        videoList.appendChild(card);
-      });
-    }
-
-    // Show dashboard with password
-    dashboardBtn.addEventListener("click", () => {
-      const pass = prompt("Enter dashboard password:");
-      if (pass === "Maximus101@") {
-        dashboard.classList.remove("hidden");
-        jsonOutput.textContent = JSON.stringify(content, null, 2);
-      } else {
-        alert("Wrong password!");
-      }
-    });
-
-    // Add new video
-    addForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const title = document.getElementById("title").value;
-      const url = document.getElementById("url").value;
-      if (title && url) {
-        content.videos.push({title, url});
-        renderVideos();
-        jsonOutput.textContent = JSON.stringify(content, null, 2);
-        addForm.reset();
-      }
-    });
-
-    // Init
-    renderVideos();
-  </script>
+  <!-- Contact & Footer -->
+  <footer id="contact" class="bg-gray-100 py-10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-lg font-semibold">Contact Us</h3>
+      <p class="mt-2 text-gray-600">Have questions? Email us at <a href="mailto:support@nkomode.com" class="text-blue-600">support@nkomode.com</a></p>
+      <p class="mt-6 text-sm text-gray-500">© 2025 Nkomode GPT. All rights reserved.</p>
+      <p class="mt-1 text-xs text-gray-400"><a href="/privacy.html" class="underline">Privacy Policy</a></p>
+    </div>
+  </footer>
 </body>
 </html>
