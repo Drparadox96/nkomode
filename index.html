@@ -2,46 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Win Free MoMo - Ghana Quiz</title>
+  <title>Win Free MoMo - Ghana Quiz Challenge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #f0f2f5; /* Lighter background */
-      padding-top: 60px;
+      background-color: #f0f2f5;
+      padding-top: 40px;
       font-family: 'Segoe UI', sans-serif;
     }
     .quiz-container {
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
       background: #fff;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Stronger shadow */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       text-align: center;
-      position: relative; /* For flag positioning */
+      position: relative;
     }
-    .btn-next {
+    .btn-action {
       margin-top: 20px;
-      padding: 10px 30px; /* Larger buttons */
+      padding: 12px 30px;
       font-size: 1.1rem;
+      width: 100%;
     }
     #ads {
       display: none;
       margin-top: 30px;
-      background-color: #e9ecef; /* Light gray background for ads */
+      background-color: #e9ecef;
       padding: 15px;
       border-radius: 10px;
       border: 1px dashed #ced4da;
     }
-    #completeMessage {
-      display: none;
-      animation: fadeIn 1s ease-in-out; /* Fade-in animation */
-    }
     .ghana-flag {
       width: 50px;
       height: auto;
-      margin-right: 10px;
+      margin-right: 15px;
       vertical-align: middle;
     }
     .quiz-header {
@@ -52,70 +49,56 @@
     }
     .quiz-header h3 {
       margin: 0;
-      color: #343a40; /* Darker text for header */
+      color: #343a40;
     }
     #questionBox {
-      min-height: 80px; /* Ensure consistent height for question box */
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #f8f9fa; /* Light background for question */
+      background-color: #f8f9fa;
       padding: 20px;
       border-radius: 10px;
       border: 1px solid #dee2e6;
       font-weight: 500;
       color: #495057;
-      text-align: center; /* Ensure text is centered within the box */
-      margin-bottom: 20px; /* Space before answer input */
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 1.2rem;
     }
-    #answerInput {
-      width: 80%; /* Make answer input a bit narrower */
-      padding: 10px;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      font-size: 1rem;
-      text-align: center; /* Center placeholder text */
+    #optionsContainer .btn {
+      text-align: left;
+      padding: 15px;
+      font-size: 1.05rem;
+    }
+    #momoDetails, #completeMessage {
+      display: none;
     }
     #momoDetails {
-      display: none; /* Initially hidden */
       margin-top: 30px;
       padding: 20px;
-      background-color: #e6ffe6; /* Light green background */
+      background-color: #e6ffe6;
       border: 1px solid #c3e6cb;
       border-radius: 10px;
       text-align: left;
     }
     #momoDetails h5 {
-      color: #28a745; /* Green header */
+      color: #28a745;
       margin-bottom: 15px;
     }
-    #momoDetails .form-label {
-      font-weight: bold;
-      color: #388e3c;
-    }
-
     /* Mobile Responsiveness */
     @media (max-width: 576px) {
       body {
-        padding-top: 30px;
+        padding-top: 20px;
       }
       .quiz-container {
         margin: 15px;
         padding: 20px;
       }
-      .btn-next {
+      .btn-action {
         width: 100%;
         padding: 12px 0;
       }
-      #answerInput {
-        width: 95%; /* Adjust for smaller screens */
-      }
-    }
-
-    /* Fade-in animation for complete message */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -124,47 +107,38 @@
 <div class="quiz-container" id="quizBox">
   <div class="quiz-header">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
-    <h3>Answer and Win MoMo!</h3>
+    <h3>Answer & Win MoMo!</h3>
   </div>
-  <p class="text-muted" id="quizInstructions">Answer all 50 questions for a chance to win 10 GHS instantly.</p>
+  <p class="text-muted" id="quizInstructions">Answer all 200 questions for a chance to win 10 GHS.</p>
 
   <div id="questionBox" class="my-4 fs-5">Click Start to begin</div>
-  <input type="text" id="answerInput" class="form-control" placeholder="Type your answer here" style="display:none;">
+  
+  <div id="optionsContainer" class="d-grid gap-2 mt-3">
+    </div>
 
-  <button onclick="nextQuestion()" id="nextBtn" class="btn btn-primary btn-next">Start</button>
-  <button onclick="showMomoDetails()" id="submitBtn" class="btn btn-success btn-next" style="display:none;">Submit Answers & Get MoMo</button>
+  <button onclick="startQuiz()" id="startBtn" class="btn btn-primary btn-action">Start</button>
+  <button onclick="showMomoDetails()" id="submitBtn" class="btn btn-success btn-action" style="display:none;">Submit & Enter Draw</button>
 
   <div id="ads">
     <p class="text-muted text-center"><small>Advertisement</small></p>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-5504233917685167"
-         data-ad-slot="9668295398"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div style="height: 100px; background: #ddd; display:flex; align-items:center; justify-content:center;">Ad Placeholder</div>
   </div>
 </div>
 
 <div class="quiz-container" id="momoDetails">
   <h5>🎉 Almost There! Enter Your MoMo Details</h5>
-  <p>To receive your 10 GHS, please provide your MoMo number and full name. This information will only be used for prize distribution.</p>
+  <p>To receive your 10 GHS if you win, please provide your MoMo number and full name.</p>
   <form id="momoForm">
     <div class="mb-3 text-start">
       <label for="momoNumber" class="form-label">MoMo Number:</label>
       <input type="tel" class="form-control" id="momoNumber" placeholder="e.g., 05XXXXXXXX" required pattern="[0-9]{10}">
-      <div class="form-text">Enter your 10-digit MoMo number.</div>
     </div>
     <div class="mb-3 text-start">
       <label for="fullName" class="form-label">Full Name:</label>
       <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
     </div>
-    <button type="submit" class="btn btn-success btn-next">Claim My MoMo!</button>
+    <button type="submit" class="btn btn-success btn-action">Claim My Entry!</button>
   </form>
-  <p class="text-muted mt-3"><small>Note: Prizes are distributed periodically. We will contact winners directly.</small></p>
 </div>
 
 <div class="quiz-container" id="completeMessage">
@@ -172,179 +146,295 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
     <h4>✅ Submission Received!</h4>
   </div>
-  <p>Thank you for submitting your details. We'll contact you if you win the MoMo draw!</p>
-  <p class="text-muted">Share this page with friends to increase your chances.</p>
-  <div class="mt-4">
-    <a href="#" class="btn btn-success btn-sm share-whatsapp" target="_blank">Share on WhatsApp</a>
-    <a href="#" class="btn btn-primary btn-sm ms-2 share-facebook" target="_blank">Share on Facebook</a>
-  </div>
+  <p>Thank you for participating! We'll contact you if you win the MoMo draw. Good luck!</p>
+  <p class="text-muted">Share this page with friends to earn bonus entries.</p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const questions = [
-    "What is the capital of Ghana?",
-    "Which region is Kumasi located in?",
-    "How many regions are in Ghana?",
-    "Who was the first president of Ghana?",
-    "What does ECG stand for?",
-    "Which mobile network introduced MoMo?",
-    "Name a currency used in Ghana.",
-    "What does GES stand for?",
-    "In which month is Independence Day celebrated?",
-    "Which sea borders Ghana?",
-    "Name a popular Ghanaian dish.",
-    "Which city hosts Kejetia Market?",
-    "What color is on top of the Ghana flag?",
-    "Which day is Republic Day in Ghana?",
-    "What is the capital of Volta Region?",
-    "Who is the Black Stars captain?",
-    "Which bank is owned by the government?",
-    "What does WAEC stand for?",
-    "Where is Cape Coast Castle located?",
-    "Which crop is Ghana famous for?",
-    "What is Ghana’s international dialing code?",
-    "What does NHIS stand for?",
-    "What year did Ghana gain independence?",
-    "Which country is Ghana's neighbor to the east?",
-    "Who is Kwame Nkrumah?",
-    "What does DVLA handle?",
-    "What is the national currency symbol?",
-    "How many stars are on Ghana’s flag?",
-    "Name one polytechnic in Ghana.",
-    "Where is Legon located?",
-    "What is the largest region in Ghana?",
-    "Name a popular Ghanaian festival.",
-    "What does NSS mean?",
-    "What is the name of the Ghanaian parliament building?",
-    "Which city is known as the oil city?",
-    "Which airline is Ghana's national carrier?",
-    "Name a river in Ghana.",
-    "What is the name of Ghana’s current president?",
-    "What is the name of the Vice President?",
-    "What is the local name for plantain in Akan?",
-    "What is the meaning of “Akwaaba”?",
-    "What is the name of Ghana’s currency note?",
-    "Who was Ghana’s first female Chief Justice?",
-    "Name the official language of Ghana.",
-    "Name a university in Ghana.",
-    "What does BECE stand for?",
-    "What is the education regulatory body in Ghana?",
-    "Where is the Manhyia Palace located?",
-    "What is the currency of Ghana called?",
-    "Which sport is most popular in Ghana?"
+    { q: "What is the capital of Ghana?", options: ["Kumasi", "Accra", "Takoradi", "Tamale"], answer: "Accra" },
+    { q: "Which region is Kumasi located in?", options: ["Greater Accra", "Ashanti", "Volta", "Western"], answer: "Ashanti" },
+    { q: "How many administrative regions are in Ghana as of 2024?", options: ["10", "12", "16", "14"], answer: "16" },
+    { q: "Who was the first president of Ghana?", options: ["J.B. Danquah", "Kofi Annan", "Kwame Nkrumah", "Jerry Rawlings"], answer: "Kwame Nkrumah" },
+    { q: "What does ECG stand for?", options: ["Energy Company of Ghana", "Electricity Corporation of Ghana", "Electricity Company of Ghana", "Electronic Current of Ghana"], answer: "Electricity Company of Ghana" },
+    { q: "Which mobile network introduced Mobile Money (MoMo) in Ghana?", options: ["Vodafone", "AirtelTigo", "Glo", "MTN"], answer: "MTN" },
+    { q: "What is the official currency of Ghana?", options: ["Naira", "Cedi", "Franc", "Dollar"], answer: "Cedi" },
+    { q: "What does GES stand for?", options: ["Ghanaian Education Service", "Ghana Education Service", "General Education System", "Governmental Education Service"], answer: "Ghana Education Service" },
+    { q: "In which month is Ghana's Independence Day celebrated?", options: ["July", "December", "March", "August"], answer: "March" },
+    { q: "What is the name of the large artificial lake in Ghana?", options: ["Lake Bosomtwe", "Volta Lake", "Weija Lake", "Keta Lagoon"], answer: "Volta Lake" },
+    { q: "Which popular Ghanaian dish is made from fermented corn dough?", options: ["Fufu", "Banku", "Kenkey", "Waakye"], answer: "Kenkey" },
+    { q: "Which city hosts the largest open-air market in West Africa, Kejetia Market?", options: ["Accra", "Takoradi", "Kumasi", "Cape Coast"], answer: "Kumasi" },
+    { q: "What color is at the top of the Ghanaian flag?", options: ["Red", "Gold", "Green", "Black"], answer: "Red" },
+    { q: "Ghana became a republic on which date?", options: ["March 6, 1957", "July 1, 1960", "August 4, 1947", "January 7, 1993"], answer: "July 1, 1960" },
+    { q: "What is the capital of the Volta Region?", options: ["Ho", "Koforidua", "Sunyani", "Bolgatanga"], answer: "Ho" },
+    { q: "Who is the all-time top scorer for the Ghana national football team, the Black Stars?", options: ["Abedi Pele", "Tony Yeboah", "Asamoah Gyan", "André Ayew"], answer: "Asamoah Gyan" },
+    { q: "Which of these banks is a state-owned commercial bank?", options: ["Ecobank", "GCB Bank PLC", "Fidelity Bank", "CalBank"], answer: "GCB Bank PLC" },
+    { q: "What does WAEC stand for?", options: ["West African Examination Council", "Western Area Education Committee", "West African Education Council", "West African Entrance Certificate"], answer: "West African Examination Council" },
+    { q: "The Cape Coast Castle is located in which region?", options: ["Western", "Greater Accra", "Central", "Volta"], answer: "Central" },
+    { q: "Ghana is the world's second-largest producer of which crop?", options: ["Coffee", "Rubber", "Cocoa", "Palm oil"], answer: "Cocoa" },
+    { q: "What is Ghana’s international telephone dialing code?", options: ["+234", "+225", "+233", "+243"], answer: "+233" },
+    { q: "What does NHIS stand for?", options: ["National Health Insurance Scheme", "National Health Information System", "New Health Insurance Service", "National Hospital Insurance Scheme"], answer: "National Health Insurance Scheme" },
+    { q: "In what year did Ghana gain independence from Britain?", options: ["1960", "1957", "1966", "1955"], answer: "1957" },
+    { q: "Which country borders Ghana to the east?", options: ["Burkina Faso", "Ivory Coast", "Togo", "Benin"], answer: "Togo" },
+    { q: "Kwame Nkrumah was a founding member of which organization?", options: ["United Nations", "African Union", "Organisation of African Unity", "ECOWAS"], answer: "Organisation of African Unity" },
+    { q: "What does DVLA handle in Ghana?", options: ["Voter Registration", "Driver and Vehicle Licensing", "Land Valuation", "Domestic Violence"], answer: "Driver and Vehicle Licensing" },
+    { q: "What is the symbol for the Ghanaian Cedi?", options: ["₵", "C", "GH₵", "GHS"], answer: "GH₵" },
+    { q: "How many stars are on the national flag of Ghana?", options: ["One", "Three", "Five", "Two"], answer: "One" },
+    { q: "Which of these is a major technical university in Ghana?", options: ["University of Ghana", "KNUST", "Accra Technical University", "University of Cape Coast"], answer: "Accra Technical University" },
+    { q: "The University of Ghana is located in which suburb of Accra?", options: ["Osu", "Madina", "Legon", "Circle"], answer: "Legon" },
+    { q: "By land area, what was the largest region in Ghana before the creation of new regions?", options: ["Ashanti", "Northern", "Eastern", "Brong-Ahafo"], answer: "Northern" },
+    { q: "The Homowo festival is celebrated by which ethnic group?", options: ["Ewe", "Asante", "Ga-Adangbe", "Fante"], answer: "Ga-Adangbe" },
+    { q: "What does NSS stand for in the context of Ghanaian graduates?", options: ["National Savings Scheme", "National Security Service", "National Service Scheme", "New School System"], answer: "National Service Scheme" },
+    { q: "What is the official seat of the Ghanaian parliament called?", options: ["Flagstaff House", "Osu Castle", "Parliament House", "The Jubilee House"], answer: "Parliament House" },
+    { q: "Which Ghanaian city is often referred to as the 'Oil City'?", options: ["Tema", "Takoradi", "Aflao", "Elmina"], answer: "Takoradi" },
+    { q: "The Adomi Bridge spans which river?", options: ["Pra River", "Ankobra River", "Tano River", "Volta River"], answer: "Volta River" },
+    { q: "What does the Akan word 'Akwaaba' mean?", options: ["Goodbye", "Thank you", "Welcome", "Sorry"], answer: "Welcome" },
+    { q: "Who was the first female Chief Justice of Ghana?", options: ["Joyce Bamford-Addo", "Sophia Akuffo", "Georgina Theodora Wood", "Gloria Akuffo"], answer: "Georgina Theodora Wood" },
+    { q: "What is the official language of Ghana?", options: ["Twi", "French", "English", "Hausa"], answer: "English" },
+    { q: "What does BECE stand for?", options: ["Basic Education Certificate Exam", "Board Entrance Certificate Exam", "Basic Entrance Competency Exam", "Bureau of Education Certification"], answer: "Basic Education Certificate Exam" },
+    { q: "The Manhyia Palace is the seat of which monarch?", options: ["Ga Mantse", "Yaa Naa", "Asantehene", "Togbe Afede"], answer: "Asantehene" },
+    { q: "Which sport is considered the most popular in Ghana?", options: ["Boxing", "Athletics", "Football", "Basketball"], answer: "Football" },
+    { q: "The Akosombo Dam is primarily used for generating what?", options: ["Drinking Water", "Irrigation", "Hydroelectric Power", "Tourism"], answer: "Hydroelectric Power" },
+    { q: "Which former UN Secretary-General was from Ghana?", options: ["Boutros Boutros-Ghali", "Kofi Annan", "Ban Ki-moon", "Trygve Lie"], answer: "Kofi Annan" },
+    { q: "The Wli Waterfalls are located in which region?", options: ["Oti", "Eastern", "Volta", "Bono East"], answer: "Volta" },
+    { q: "The currency sub-unit of the Ghana Cedi is the...", options: ["Kobo", "Pesewa", "Cent", "Shilling"], answer: "Pesewa" },
+    { q: "Which political party does the current President Nana Akufo-Addo belong to?", options: ["NDC", "CPP", "NPP", "PNC"], answer: "NPP" },
+    { q: "The National Theatre in Accra is noted for its unique architectural design resembling a...", options: ["Star", "Ship", "Drum", "Eagle"], answer: "Ship" },
+    { q: "Which Ghanaian festival is known as the 'Hogbetsotso Festival'?", options: ["Celebrated by the Anlo Ewes", "Celebrated by the Fantes", "Celebrated by the Dagombas", "Celebrated by the Ashantis"], answer: "Celebrated by the Anlo Ewes" },
+    { q: "Who designed the national flag of Ghana?", options: ["Ephraim Amu", "Theodosia Okoh", "Philip Gbeho", "J.B. Danquah"], answer: "Theodosia Okoh" },
+    { q: "The term 'Gold Coast' was the colonial name for which country?", options: ["Nigeria", "Sierra Leone", "Ghana", "Ivory Coast"], answer: "Ghana" },
+    { q: "Which castle was the seat of the Ghanaian government until 2013?", options: ["Cape Coast Castle", "Elmina Castle", "Osu Castle", "Christiansborg Castle"], answer: "Osu Castle" },
+    { q: "The Mole National Park is located in which region?", options: ["Savannah", "Upper West", "North East", "Upper East"], answer: "Savannah" },
+    { q: "What is the title of the traditional ruler of the Dagbon kingdom?", options: ["Nayiri", "Bawku Naba", "Yaa Naa", "Bolewura"], answer: "Yaa Naa" },
+    { q: "The 'Big Six' are remembered for their role in...", options: ["Winning the AFCON", "Ghana's independence struggle", "Writing the constitution", "Discovering gold"], answer: "Ghana's independence struggle" },
+    { q: "Which Ghanaian musician is known for pioneering Hiplife music?", options: ["Sarkodie", "Reggie Rockstone", "Shatta Wale", "Amakye Dede"], answer: "Reggie Rockstone" },
+    { q: "The Peduase Lodge is a presidential retreat located in which region?", options: ["Greater Accra", "Central", "Eastern", "Volta"], answer: "Eastern" },
+    { q: "What is 'Waakye'?", options: ["A spicy kebab", "A rice and beans dish", "A corn and cassava dough", "A peanut butter soup"], answer: "A rice and beans dish" },
+    { q: "The University for Development Studies (UDS) has its main campus in...", options: ["Wa", "Bolgatanga", "Tamale", "Navrongo"], answer: "Tamale" },
+    { q: "Which of these is NOT a neighboring country of Ghana?", options: ["Togo", "Nigeria", "Burkina Faso", "Côte d'Ivoire"], answer: "Nigeria" },
+    { q: "The black star on the Ghanaian flag is a symbol of...", options: ["African emancipation", "The rich minerals of the land", "The forests of Ghana", "The blood of freedom fighters"], answer: "African emancipation" },
+    { q: "Which body is responsible for conducting elections in Ghana?", options: ["National Identification Authority", "Electoral Commission", "Ghana Police Service", "Parliament of Ghana"], answer: "Electoral Commission" },
+    { q: "The Kwame Nkrumah Mausoleum is located in...", options: ["Kumasi", "Cape Coast", "Accra", "Nkroful"], answer: "Accra" },
+    { q: "Which region is known for its capital, Sunyani?", options: ["Ahafo", "Bono", "Bono East", "Western North"], answer: "Bono" },
+    { q: "The term 'dumsor' in Ghana refers to...", options: ["Heavy traffic", "Persistent power outages", "Flooding", "A political rally"], answer: "Persistent power outages" },
+    { q: "Which of these is a famous brand of Ghanaian chocolate?", options: ["Cadbury", "Lindt", "Kingsbite", "Hershey's"], answer: "Kingsbite" },
+    { q: "The Aboakyer festival, involving a deer hunt, is celebrated in which town?", options: ["Elmina", "Winneba", "Cape Coast", "Saltpond"], answer: "Winneba" },
+    { q: "What is the capital of the Western Region?", options: ["Takoradi", "Tarkwa", "Sekondi-Takoradi", "Axim"], answer: "Sekondi-Takoradi" },
+    { q: "The Ghana Police Service's emergency number is...", options: ["911", "191", "18555", "999"], answer: "191" },
+    { q: "Which Ghanaian was a former President of the UN General Assembly?", options: ["Alex Quaison-Sackey", "Kofi Annan", "Nana Akufo-Addo", "John Kufuor"], answer: "Alex Quaison-Sackey" },
+    { q: "The Boti Falls are located in which region?", options: ["Volta", "Oti", "Eastern", "Ashanti"], answer: "Eastern" },
+    { q: "What is the main ingredient in 'fufu'?", options: ["Yam and Plantain", "Corn and Cassava", "Rice and Millet", "Sorghum and Wheat"], answer: "Yam and Plantain" },
+    { q: "Which Ghanaian boxer was known as 'Azumah Nelson'?", options: ["Ike Quartey", "Joshua Clottey", "Azumah Nelson", "DK Poison"], answer: "Azumah Nelson" },
+    { q: "The Kotoka International Airport is named after...", options: ["A former president", "A military officer", "A traditional chief", "An independence leader"], answer: "A military officer" },
+    { q: "Ghana's parliament is...", options: ["Bicameral (two houses)", "Unicameral (one house)", "Tricameral (three houses)", "Non-cameral"], answer: "Unicameral (one house)" },
+    { q: "The Shai Hills Resource Reserve is in which region?", options: ["Eastern", "Volta", "Greater Accra", "Central"], answer: "Greater Accra" },
+    { q: "Which country was formerly known as Upper Volta?", options: ["Togo", "Burkina Faso", "Mali", "Niger"], answer: "Burkina Faso" },
+    { q: "The colors of the Ghanaian flag are Red, Gold, Green, and...", options: ["White", "Blue", "Black", "Yellow"], answer: "Black" },
+    { q: "What does 'trotro' refer to in Ghana?", options: ["A type of food", "A private taxi", "A commercial minibus", "A motorcycle"], answer: "A commercial minibus" },
+    { q: "The National Service period for Ghanaian graduates is typically how long?", options: ["6 months", "1 year", "18 months", "2 years"], answer: "1 year" },
+    { q: "Which region's capital is Goaso?", options: ["Bono", "Ahafo", "Western North", "Oti"], answer: "Ahafo" },
+    { q: "The Ghana cedi was re-denominated in which year?", options: ["2000", "2010", "2007", "1999"], answer: "2007" },
+    { q: "Who composed Ghana's national anthem?", options: ["Ephraim Amu", "Kwame Nkrumah", "Philip Gbeho", "J.H. Kwabena Nketia"], answer: "Philip Gbeho" },
+    { q: "The highest mountain in Ghana is...", options: ["Mount Afadja (Afadjato)", "Mount Edouka", "Mount Atiwiredu", "Akwapim-Togo Range"], answer: "Mount Afadja (Afadjato)" },
+    { q: "Which region has the capital Nalerigu?", options: ["Savannah", "North East", "Upper West", "Oti"], answer: "North East" },
+    { q: "The famous 'Canopy Walk' is a feature of which national park?", options: ["Mole National Park", "Kakum National Park", "Bia National Park", "Digya National Park"], answer: "Kakum National Park" },
+    { q: "What is the local name for a spicy kebab in Ghana?", options: ["Suya", "Kelewele", "Chichinga", "Dombolo"], answer: "Chichinga" },
+    { q: "The Golden Stool ('Sika Dwa Kofi') is a sacred symbol of which kingdom?", options: ["Ga", "Ewe", "Dagbon", "Asante"], answer: "Asante" },
+    { q: "In Ghana, JHS stands for...", options: ["Junior High School", "Joint High School", "Junior Honours School", "Judicial High School"], answer: "Junior High School" },
+    { q: "What is the capital of the Upper West Region?", options: ["Bolgatanga", "Wa", "Tamale", "Nalerigu"], answer: "Wa" },
+    { q: "Which of these is a popular Ghanaian textile?", options: ["Ankara", "Kente", "Batik", "Shweshwe"], answer: "Kente" },
+    { q: "The Tema Motorway connects Tema to which city?", options: ["Koforidua", "Accra", "Aflao", "Cape Coast"], answer: "Accra" },
+    { q: "Who was the chairman of the PNDC military government?", options: ["I.K. Acheampong", "Jerry John Rawlings", "Akwasi Afrifa", "Fred Akuffo"], answer: "Jerry John Rawlings" },
+    { q: "What is the capital of the Bono East Region?", options: ["Techiman", "Sunyani", "Kintampo", "Nkoranza"], answer: "Techiman" },
+    { q: "Which mineral is NOT significantly mined in Ghana?", options: ["Gold", "Diamonds", "Bauxite", "Copper"], answer: "Copper" },
+    { q: "Lake Bosomtwe is a natural lake formed by a...", options: ["Volcanic eruption", "Meteorite impact", "Glacial melt", "Tectonic shift"], answer: "Meteorite impact" },
+    { q: "Which of these languages is a member of the Akan language group?", options: ["Ewe", "Ga", "Fante", "Dagbani"], answer: "Fante" },
+    { q: "The 'Year of Return' initiative in Ghana took place in which year?", options: ["2007", "2017", "2019", "2020"], answer: "2019" },
+    { q: "What is the capital of the Savannah Region?", options: ["Damongo", "Salaga", "Bole", "Yapei"], answer: "Damongo" },
+    // Adding more questions to reach 200
+    { q: "Ghana's coat of arms features two eagles and a...", options: ["Lion", "Leopard", "Black Star", "Sword"], answer: "Black Star" },
+    { q: "The currency 'Cedi' is named after...", options: ["A king", "A river", "Cowrie shells", "A type of tree"], answer: "Cowrie shells" },
+    { q: "Which Ghanaian city is closest to the Prime Meridian?", options: ["Accra", "Tema", "Takoradi", "Aflao"], answer: "Tema" },
+    { q: "The term 'Abongo Boys' is a colloquial name for...", options: ["Police officers", "Students", "Soldiers", "Fishermen"], answer: "Soldiers" },
+    { q: "What is 'Kelewele'?", options: ["Fried yam sticks", "Spicy fried plantain", "Grilled tilapia", "Corn porridge"], answer: "Spicy fried plantain" },
+    { q: "Which region has Dambai as its capital?", options: ["Volta", "Oti", "Bono East", "North East"], answer: "Oti" },
+    { q: "Who was the leader of the 'United Gold Coast Convention' (UGCC)?", options: ["Kwame Nkrumah", "J.B. Danquah", "Paa Grant", "Ako Adjei"], answer: "Paa Grant" },
+    { q: "The Akwapim-Togo mountain range runs along Ghana's border with...", options: ["Burkina Faso", "Ivory Coast", "Togo", "Benin"], answer: "Togo" },
+    { q: "What is the name of Ghana's national airline?", options: ["There is no national airline", "Ghana Airways", "Air Ghana", "Africa World Airlines"], answer: "Africa World Airlines" },
+    { q: "The 'Right to Information' (RTI) bill was passed in Ghana in which year?", options: ["2005", "2012", "2019", "2021"], answer: "2019" },
+    { q: "What is the main purpose of the 'Planting for Food and Jobs' policy?", options: ["Boost agriculture", "Create tech jobs", "Improve education", "Promote tourism"], answer: "Boost agriculture" },
+    { q: "Which region has Sefwi Wiawso as its capital?", options: ["Western", "Ahafo", "Western North", "Bono"], answer: "Western North" },
+    { q: "The Elmina Castle was originally built by the...", options: ["British", "Dutch", "Portuguese", "Danish"], answer: "Portuguese" },
+    { q: "Which Ghanaian president was in office during the 2014 World Cup?", options: ["John Kufuor", "John Atta Mills", "John Mahama", "Nana Akufo-Addo"], answer: "John Mahama" },
+    { q: "The Kofi Annan International Peacekeeping Training Centre is located in...", options: ["Kumasi", "Accra", "Takoradi", "Tamale"], answer: "Accra" },
+    { q: "The Tetteh Quarshie Interchange is a major landmark in...", options: ["Kumasi", "Takoradi", "Accra", "Cape Coast"], answer: "Accra" },
+    { q: "The symbol of the National Democratic Congress (NDC) party is an...", options: ["Elephant", "Umbrella", "Coconut", "Eagle"], answer: "Umbrella" },
+    { q: "What is the primary language spoken in the Volta Region?", options: ["Twi", "Ga", "Ewe", "Hausa"], answer: "Ewe" },
+    { q: "The 'Clean-Up Day' in Ghana is observed on the first...", options: ["Monday of the month", "Friday of the month", "Saturday of the month", "Sunday of the month"], answer: "Saturday of the month" },
+    { q: "Which of these is a famous 'kente' weaving town?", options: ["Adanwomase", "Bolgatanga", "Kintampo", "Ho"], answer: "Adanwomase" },
+    { q: "The symbol of the New Patriotic Party (NPP) is an...", options: ["Elephant", "Umbrella", "Star", "Dove"], answer: "Elephant" },
+    { q: "The Jubilee House, the seat of the presidency, was formerly known as...", options: ["The Castle", "Flagstaff House", "Peduase Lodge", "Government House"], answer: "Flagstaff House" },
+    { q: "Which Ghanaian actor has featured in major Hollywood films like 'Beasts of No Nation'?", options: ["John Dumelo", "Majid Michel", "Abraham Attah", "Van Vicker"], answer: "Abraham Attah" },
+    { q: "The Aburi Botanical Gardens are located in which region?", options: ["Greater Accra", "Eastern", "Central", "Volta"], answer: "Eastern" },
+    { q: "What is the capital of the North East Region?", options: ["Walewale", "Nalerigu", "Gambaga", "Yagaba"], answer: "Nalerigu" },
+    { q: "The first competitive football match for the Black Stars was against which country?", options: ["Togo", "Nigeria", "Ivory Coast", "Benin"], answer: "Nigeria" },
+    { q: "What does NADMO stand for?", options: ["National Disaster Management Organization", "National Development & Mobilization Office", "New Agency for Domestic Mobilization", "National Dairy Management Organization"], answer: "National Disaster Management Organization" },
+    { q: "The Larabanga Mosque, one of West Africa's oldest, is in which region?", options: ["Northern", "Savannah", "Upper West", "North East"], answer: "Savannah" },
+    { q: "Which of the following is a Ghanaian Highlife musician legend?", options: ["Sarkodie", "Daddy Lumba", "Shatta Wale", "Stonebwoy"], answer: "Daddy Lumba" },
+    { q: "The Greenwich Meridian passes through which Ghanaian industrial city?", options: ["Accra", "Tema", "Takoradi", "Kumasi"], answer: "Tema" },
+    { q: "Which body regulates universities in Ghana?", options: ["GES", "WAEC", "GTEC", "NMC"], answer: "GTEC" },
+    { q: "The 'Operation Feed Yourself' program was initiated under which leader?", options: ["Kwame Nkrumah", "I.K. Acheampong", "J.J. Rawlings", "John Kufuor"], answer: "I.K. Acheampong" },
+    { q: "Which of the following is a major river in the Ashanti Region?", options: ["Volta", "Pra", "Oti", "Densu"], answer: "Pra" },
+    { q: "Ghana's Fourth Republic began in which year?", options: ["1960", "1979", "1993", "2001"], answer: "1993" },
+    { q: "Which region is famous for its basket weaving industry, particularly in Bolgatanga?", options: ["Upper West", "North East", "Savannah", "Upper East"], answer: "Upper East" },
+    { q: "The name 'Ghana' was inspired by which ancient empire?", options: ["Mali Empire", "Songhai Empire", "Ancient Ghana Empire", "Ashanti Empire"], answer: "Ancient Ghana Empire" },
+    { q: "What is the capital of the Oti Region?", options: ["Kete Krachi", "Jasikan", "Dambai", "Nkwanta"], answer: "Dambai" },
+    { q: "Which Ghanaian invented the Veronica Bucket?", options: ["Esther Ocloo", "Veronica Bekoe", "Theodosia Okoh", "Letitia Obeng"], answer: "Veronica Bekoe" },
+    { q: "The Ghana Broadcasting Corporation (GBC) is...", options: ["Privately owned", "State-owned", "Foreign-owned", "Community-owned"], answer: "State-owned" },
+    { q: "The Akwamu kingdom was powerful along which river?", options: ["Pra River", "Ankobra River", "Volta River", "Tano River"], answer: "Volta River" },
+    { q: "The National Cathedral of Ghana is being built in which city?", options: ["Kumasi", "Cape Coast", "Accra", "Koforidua"], answer: "Accra" },
+    { q: "In which year did Ghana host the Africa Cup of Nations (AFCON) for the last time?", options: ["2000", "2008", "2012", "2017"], answer: "2008" },
+    { q: "The 'cedi' denomination replaced what currency?", options: ["The Ghanaian Pound", "The West African Shilling", "The British Pound", "The Gold Coast Akcee"], answer: "The Ghanaian Pound" },
+    { q: "The Nzema people are predominantly found in which region?", options: ["Central", "Western", "Volta", "Greater Accra"], answer: "Western" },
+    { q: "What is the role of the 'Okyeame' in Akan chieftaincy?", options: ["Chief's guard", "Linguist/Spokesperson", "Treasurer", "Drummer"], answer: "Linguist/Spokesperson" },
+    { q: "The Ghana Institute of Management and Public Administration is known as?", options: ["GIMPA", "UPSA", "GIJ", "LEGON"], answer: "GIMPA" },
+    { q: "Which Ghanaian president passed away while in office?", options: ["Kwame Nkrumah", "John Atta Mills", "Hilla Limann", "John Kufuor"], answer: "John Atta Mills" },
+    { q: "The Adae Kese festival is a major festival for which ethnic group?", options: ["Ewe", "Asante", "Ga", "Frafra"], answer: "Asante" },
+    { q: "Which of these is a major export commodity for Ghana besides cocoa and gold?", options: ["Crude Oil", "Textiles", "Coffee", "Diamonds"], answer: "Crude Oil" },
+    { q: "The University of Mines and Technology is located in which town?", options: ["Obuasi", "Tarkwa", "Prestea", "Konongo"], answer: "Tarkwa" },
+    { q: "The Bank of Ghana is responsible for...", options: ["Commercial Banking", "Monetary Policy", "Collecting Taxes", "National Budget"], answer: "Monetary Policy" },
+    { q: "What is the full meaning of KNUST?", options: ["Kwame Nkrumah University of Science and Technology", "Koforidua Nkrumah University of Science and Technology", "Kumasi National University of Science and Technology", "Kwame Nkrumah University of Scientific Training"], answer: "Kwame Nkrumah University of Science and Technology" },
+    { q: "Which region was the Brong-Ahafo region split into?", options: ["Bono, Bono East, Ahafo", "Savannah, North East", "Western North, Oti", "Bono, Ahafo"], answer: "Bono, Bono East, Ahafo" },
+    { q: "The final of the 1978 AFCON, won by Ghana, was played in which city?", options: ["Kumasi", "Accra", "Takoradi", "Cape Coast"], answer: "Accra" },
+    { q: "The traditional cloth 'Batakari' or 'fugu' is mostly associated with which part of Ghana?", options: ["Southern Ghana", "Northern Ghana", "Volta Region", "Western Region"], answer: "Northern Ghana" },
+    { q: "The 'Preventive Detention Act' was a controversial law passed under which leader?", options: ["Kwame Nkrumah", "K.A. Busia", "J.J. Rawlings", "I.K. Acheampong"], answer: "Kwame Nkrumah" },
+    { q: "The Judicial Service of Ghana is headed by the...", options: ["President", "Attorney General", "Chief Justice", "Speaker of Parliament"], answer: "Chief Justice" },
+    { q: "Which town is famous for its slave river, 'Donkor Nsuo'?", options: ["Elmina", "Cape Coast", "Assin Manso", "Salaga"], answer: "Assin Manso" },
+    { q: "The Ghana Institute of Journalism (GIJ) is located in?", options: ["Kumasi", "Accra", "Cape Coast", "Sunyani"], answer: "Accra" },
+    { q: "What does SSNIT stand for?", options: ["Social Security and National Insurance Trust", "State Security and National Information Trust", "Social Service and National Investment Trust", "Senior Staff National Insurance Trust"], answer: "Social Security and National Insurance Trust" },
+    { q: "The Ankobra and Tano rivers both empty into the...", options: ["Volta Lake", "Gulf of Guinea", "Pra River", "Keta Lagoon"], answer: "Gulf of Guinea" },
+    { q: "Which Ghanaian football club is known as the 'Phobians'?", options: ["Asante Kotoko", "Ashanti Gold", "Hearts of Oak", "Liberty Professionals"], answer: "Hearts of Oak" },
+    { q: "The Council for Scientific and Industrial Research (CSIR) is a...", options: ["Private company", "Government agency", "University department", "Non-profit organization"], answer: "Government agency" },
+    { q: "Who was the first Speaker of Parliament in Ghana's Fourth Republic?", options: ["Peter Ala Adjetey", "Justice D.F. Annan", "Ebenezer Sekyi-Hughes", "Joyce Bamford-Addo"], answer: "Justice D.F. Annan" },
+    { q: "The University of Cape Coast (UCC) is well known for training which professionals?", options: ["Doctors", "Lawyers", "Engineers", "Teachers"], answer: "Teachers" },
+    { q: "The popular 'fantasy coffins' are a unique craft from which Ghanaian community?", options: ["The people of Teshie", "The people of Krobo", "The people of Bolgatanga", "The people of Aburi"], answer: "The people of Teshie" },
+    { q: "The Sagrenti War of 1874 was fought between the Asante and the...", options: ["Fante", "Dutch", "Danish", "British"], answer: "British" },
+    { q: "What is the capital of the Greater Accra Region?", options: ["Tema", "Accra", "Legon", "Madina"], answer: "Accra" },
+    { q: "The motto of Ghana is...", options: ["Unity and Faith, Peace and Progress", "Freedom and Justice", "One Nation, One Destiny", "Peace, Unity, Liberty"], answer: "Freedom and Justice" },
+    { q: "Which Ghanaian city has the nickname 'Kumerica'?", options: ["Accra", "Takoradi", "Kumasi", "Tamale"], answer: "Kumasi" },
+    { q: "The National Communications Authority (NCA) regulates which industry?", options: ["Banking", "Mining", "Telecommunications", "Education"], answer: "Telecommunications" },
+    { q: "The Weija Dam provides water for which major city?", options: ["Kumasi", "Takoradi", "Accra", "Cape Coast"], answer: "Accra" },
+    { q: "Which of these is a traditional Akan name for a male born on Sunday?", options: ["Kofi", "Kwame", "Kwadwo", "Kwasi"], answer: "Kwasi" },
+    { q: "The largest opposition party in Ghana's parliament as of 2024 is the...", options: ["NPP", "CPP", "NDC", "PNC"], answer: "NDC" },
+    { q: "The Food and Drugs Authority (FDA) in Ghana regulates...", options: ["Farming and fishing", "Food, drugs, and cosmetics", "Restaurants and hotels", "Imports and exports"], answer: "Food, drugs, and cosmetics" },
+    { q: "The 'Dipo' festival is a puberty rite associated with which people?", options: ["The Ga-Adangbe", "The Krobo", "The Ewe", "The Fante"], answer: "The Krobo" },
+    { q: "Asante Kotoko SC, a major football club, is based in which city?", options: ["Accra", "Obuasi", "Kumasi", "Tarkwa"], answer: "Kumasi" },
+    { q: "The title for the king of the Ewe people is...", options: ["Asantehene", "Ga Mantse", "Togbe", "Yaa Naa"], answer: "Togbe" },
+    { q: "Which vice president of Ghana later became president?", options: ["Kow Nkensen Arkaah", "John Atta Mills", "Aliu Mahama", "John Dramani Mahama"], answer: "John Dramani Mahama" },
+    { q: "Ghana's legal system is primarily based on...", options: ["French Civil Law", "Islamic Sharia Law", "English Common Law", "Chinese Law"], answer: "English Common Law" },
+    { q: "The popular Azonto dance originated from which country?", options: ["Nigeria", "Ghana", "South Africa", "Togo"], answer: "Ghana" }
   ];
 
-  let currentQIndex = 0; // Tracks the current question index
-  let userAnswers = []; // To store user's answers for each question
+
+  let currentQIndex = 0;
+  let userAnswers = [];
 
   const questionBox = document.getElementById("questionBox");
-  const answerInput = document.getElementById("answerInput");
+  const optionsContainer = document.getElementById("optionsContainer");
   const adsBox = document.getElementById("ads");
-  const nextBtn = document.getElementById("nextBtn");
+  const startBtn = document.getElementById("startBtn");
   const submitBtn = document.getElementById("submitBtn");
   const quizInstructions = document.getElementById("quizInstructions");
   const momoDetailsSection = document.getElementById("momoDetails");
   const completeMessageSection = document.getElementById("completeMessage");
   const momoForm = document.getElementById("momoForm");
 
-  // Function to save quiz state to localStorage before refresh
+  // Save quiz state to localStorage
   function saveQuizState() {
     localStorage.setItem('currentQIndex', currentQIndex);
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-    localStorage.setItem('quizStarted', 'true'); // Flag to indicate quiz has started
   }
+  
+  // Display the current question and options
+  function displayCurrentQuestion() {
+    if (currentQIndex < questions.length) {
+      const questionData = questions[currentQIndex];
+      questionBox.innerText = questionData.q;
+      optionsContainer.innerHTML = ''; // Clear previous options
 
-  // Function to load quiz state from localStorage on page load
-  function loadQuizState() {
-    const savedIndex = localStorage.getItem('currentQIndex');
-    const savedAnswers = localStorage.getItem('userAnswers');
-    const quizStarted = localStorage.getItem('quizStarted');
+      questionData.options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-outline-primary';
+        button.innerText = option;
+        button.onclick = () => selectAnswerAndProceed(option);
+        optionsContainer.appendChild(button);
+      });
 
-    if (quizStarted === 'true' && savedIndex !== null && savedAnswers !== null) {
-      currentQIndex = parseInt(savedIndex, 10);
-      userAnswers = JSON.parse(savedAnswers);
-      
-      // If we've completed all questions on a previous load, show submit button
-      if (currentQIndex === questions.length) {
-        questionBox.innerText = "Quiz Completed!";
-        answerInput.style.display = "none";
-        nextBtn.style.display = "none";
-        submitBtn.style.display = "inline-block";
-        quizInstructions.innerText = "Click 'Submit Answers & Get MoMo' to proceed.";
-        adsBox.style.display = "block"; // Keep ads visible
-      } else {
-        // Continue from where we left off
-        questionBox.innerText = questions[currentQIndex];
-        nextBtn.innerText = "Next Question";
-        answerInput.style.display = "block";
-        adsBox.style.display = "block"; // Show ads if quiz is in progress
-        quizInstructions.innerText = "Answer the current question:";
-      }
-    } else {
-      // Quiz not started or reset, display initial message
-      questionBox.innerText = "Click Start to begin";
-      nextBtn.innerText = "Start";
-      answerInput.style.display = "none"; // Hide input until start
+      quizInstructions.innerText = `Question ${currentQIndex + 1} of ${questions.length}`;
+      startBtn.style.display = 'none';
+      optionsContainer.style.display = 'grid';
+      adsBox.style.display = 'block';
     }
   }
 
-  // Load state when the page loads
-  document.addEventListener('DOMContentLoaded', loadQuizState);
-
-  function nextQuestion() {
-    // If it's not the very first "Start" click, store the answer
-    // And ensure an answer is provided for subsequent questions
-    if (nextBtn.innerText === "Next Question") { // Only validate if not "Start" button
-      const currentAnswer = answerInput.value.trim();
-      if (currentAnswer === "") {
-        alert("Please provide an answer before proceeding.");
-        return; // Stop the function if no answer
-      }
-      userAnswers.push(currentAnswer); // Store the current answer
-      answerInput.value = ''; // Clear the input field for the next question
-    } else {
-      // This is the first "Start" click
-      quizInstructions.innerText = "Answer the current question:";
-    }
-
-    // Increment question index for the next question to be displayed after refresh
+  // Handle answer selection and trigger next step
+  function selectAnswerAndProceed(selectedOption) {
+    userAnswers.push({ question: questions[currentQIndex].q, answer: selectedOption });
     currentQIndex++;
-
-    // Save state before refreshing
     saveQuizState();
-
-    // Trigger page refresh
     window.location.reload();
   }
 
-  // Function called when "Submit Answers & Get MoMo" is clicked
+  // Function to start the quiz
+  function startQuiz() {
+    currentQIndex = 0;
+    userAnswers = [];
+    localStorage.setItem('quizStarted', 'true');
+    saveQuizState();
+    window.location.reload();
+  }
+
+  // Load quiz state from localStorage on page load
+  function loadQuizState() {
+    const quizStarted = localStorage.getItem('quizStarted');
+    if (quizStarted !== 'true') {
+      questionBox.innerText = "Click Start to begin";
+      optionsContainer.style.display = 'none';
+      return;
+    }
+
+    const savedIndex = parseInt(localStorage.getItem('currentQIndex') || '0', 10);
+    const savedAnswers = JSON.parse(localStorage.getItem('userAnswers') || '[]');
+    currentQIndex = savedIndex;
+    userAnswers = savedAnswers;
+
+    if (currentQIndex >= questions.length) {
+      questionBox.innerText = "Quiz Completed!";
+      optionsContainer.style.display = 'none';
+      startBtn.style.display = "none";
+      submitBtn.style.display = "block";
+      quizInstructions.innerText = "Congratulations! Click 'Submit' to enter the draw.";
+      adsBox.style.display = "block";
+    } else {
+      displayCurrentQuestion();
+    }
+  }
+
+  // Show the MoMo details form
   function showMomoDetails() {
-      // Store the answer for the very last question before proceeding
-      const lastAnswer = answerInput.value.trim();
-      if (lastAnswer === "" && currentQIndex === questions.length) { // Only validate if it's indeed the final submit and an answer is expected
-         alert("Please provide an answer for the last question.");
-         return;
-      }
-      if (lastAnswer !== "" && currentQIndex === questions.length) {
-          userAnswers.push(lastAnswer);
-      }
+    console.log("All collected answers:", userAnswers); // For debugging
+    document.getElementById("quizBox").style.display = "none";
+    momoDetailsSection.style.display = "block";
 
-      console.log("All collected answers:", userAnswers); // For debugging: see all answers
-
-      document.getElementById("quizBox").style.display = "none";
-      momoDetailsSection.style.display = "block";
-
-      // Clear quiz state from localStorage as quiz is 'completed'
-      localStorage.removeItem('currentQIndex');
-      localStorage.removeItem('userAnswers');
-      localStorage.removeItem('quizStarted');
+    // Clear quiz state from localStorage
+    localStorage.removeItem('currentQIndex');
+    localStorage.removeItem('userAnswers');
+    localStorage.removeItem('quizStarted');
   }
 
   // Handle MoMo form submission
   momoForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
+    event.preventDefault();
     const momoNumber = document.getElementById("momoNumber").value.trim();
     const fullName = document.getElementById("fullName").value.trim();
 
@@ -353,48 +443,18 @@
       return;
     }
 
-    // In a real application, you would send this data to a server
-    // For example, using fetch API:
-    /*
-    fetch('/submit-momo-details', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        quizAnswers: userAnswers, // Send all collected answers with MoMo details
-        momoNumber: momoNumber,
-        fullName: fullName
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      momoDetailsSection.style.display = "none";
-      completeMessageSection.style.display = "block";
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('There was an error submitting your details. Please try again.');
-    });
-    */
-
-    // For now, just simulate success:
+    // In a real application, you would send this data to a server.
+    // For now, we simulate success.
     console.log("MoMo Number:", momoNumber);
     console.log("Full Name:", fullName);
-    console.log("User answers submitted with MoMo details:", userAnswers);
+    console.log("User answers submitted:", userAnswers);
 
     momoDetailsSection.style.display = "none";
     completeMessageSection.style.display = "block";
   });
 
-
-  // Set the correct URL for sharing buttons on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    const pageUrl = encodeURIComponent(window.location.href);
-    document.querySelector('.share-whatsapp').href = `https://wa.me/?text=I%20just%20completed%20the%20Ghana%20Quiz%20and%20entered%20to%20win%20MoMo!%20Can%20you%20do%20it?%20${pageUrl}`;
-    document.querySelector('.share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-  });
+  // Load state when the page loads
+  document.addEventListener('DOMContentLoaded', loadQuizState);
 
 </script>
 
