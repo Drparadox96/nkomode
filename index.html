@@ -1,413 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Win Free MoMo - Ghana Quiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f0f2f5; /* Lighter background */
-      padding-top: 60px;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .quiz-container {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Stronger shadow */
-      text-align: center;
-      position: relative; /* For flag positioning */
-    }
-    .btn-next {
-      margin-top: 20px;
-      padding: 10px 30px; /* Larger buttons */
-      font-size: 1.1rem;
-    }
-    #ads {
-      display: none;
-      margin-top: 30px;
-      background-color: #e9ecef; /* Light gray background for ads */
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px dashed #ced4da;
-    }
-    #completeMessage {
-      display: none;
-      animation: fadeIn 1s ease-in-out; /* Fade-in animation */
-    }
-    .ghana-flag {
-      width: 50px;
-      height: auto;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-    .quiz-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .quiz-header h3 {
-      margin: 0;
-      color: #343a40; /* Darker text for header */
-    }
-    #questionBox {
-      min-height: 80px; /* Ensure consistent height for question box */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f8f9fa; /* Light background for question */
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #dee2e6;
-      font-weight: 500;
-      color: #495057;
-      text-align: center; /* Ensure text is centered within the box */
-      margin-bottom: 20px; /* Space before answer input */
-    }
-    #answerInput {
-      width: 80%; /* Make answer input a bit narrower */
-      padding: 10px;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      font-size: 1rem;
-      text-align: center; /* Center placeholder text */
-    }
-    #momoDetails {
-      display: none; /* Initially hidden */
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #e6ffe6; /* Light green background */
-      border: 1px solid #c3e6cb;
-      border-radius: 10px;
-      text-align: left;
-    }
-    #momoDetails h5 {
-      color: #28a745; /* Green header */
-      margin-bottom: 15px;
-    }
-    #momoDetails .form-label {
-      font-weight: bold;
-      color: #388e3c;
-    }
+  <meta charset="UTF-8">
+  <title>Win Free MoMo - Ghana Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f0f2f5; /* Lighter background */
+      padding-top: 60px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .quiz-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Stronger shadow */
+      text-align: center;
+      position: relative; /* For flag positioning */
+    }
+    .btn-next {
+      margin-top: 20px;
+      padding: 10px 30px; /* Larger buttons */
+      font-size: 1.1rem;
+    }
+    #ads {
+      display: none;
+      margin-top: 30px;
+      background-color: #e9ecef; /* Light gray background for ads */
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px dashed #ced4da;
+    }
+    #completeMessage {
+      display: none;
+      animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+    }
+    .ghana-flag {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .quiz-header h3 {
+      margin: 0;
+      color: #343a40; /* Darker text for header */
+    }
+    #questionBox {
+      min-height: 80px; /* Ensure consistent height for question box */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa; /* Light background for question */
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #dee2e6;
+      font-weight: 500;
+      color: #495057;
+      text-align: center; /* Ensure text is centered within the box */
+      margin-bottom: 20px; /* Space before answer input */
+    }
+    #answerInput {
+      width: 80%; /* Make answer input a bit narrower */
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-align: center; /* Center placeholder text */
+    }
+    #momoDetails {
+      display: none; /* Initially hidden */
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #e6ffe6; /* Light green background */
+      border: 1px solid #c3e6cb;
+      border-radius: 10px;
+      text-align: left;
+    }
+    #momoDetails h5 {
+      color: #28a745; /* Green header */
+      margin-bottom: 15px;
+    }
+    #momoDetails .form-label {
+      font-weight: bold;
+      color: #388e3c;
+    }
 
-    /* Mobile Responsiveness */
-    @media (max-width: 576px) {
-      body {
-        padding-top: 30px;
-      }
-      .quiz-container {
-        margin: 15px;
-        padding: 20px;
-      }
-      .btn-next {
-        width: 100%;
-        padding: 12px 0;
-      }
-      #answerInput {
-        width: 95%; /* Adjust for smaller screens */
-      }
-    }
+    /* Mobile Responsiveness */
+    @media (max-width: 576px) {
+      body {
+        padding-top: 30px;
+      }
+      .quiz-container {
+        margin: 15px;
+        padding: 20px;
+      }
+      .btn-next {
+        width: 100%;
+        padding: 12px 0;
+      }
+      #answerInput {
+        width: 95%; /* Adjust for smaller screens */
+      }
+    }
 
-    /* Fade-in animation for complete message */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    /* Fade-in animation for complete message */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
 <div class="quiz-container" id="quizBox">
-  <div class="quiz-header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
-    <h3>Answer and Win MoMo!</h3>
-  </div>
-  <p class="text-muted" id="quizInstructions">Answer all 50 questions for a chance to win 100 GHS instantly.</p>
+  <div class="quiz-header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
+    <h3>Answer and Win MoMo!</h3>
+  </div>
+  <p class="text-muted" id="quizInstructions">Answer all 50 questions for a chance to win 10 GHS instantly.</p>
 
-  <div id="questionBox" class="my-4 fs-5">Click Start to begin</div>
-  <input type="text" id="answerInput" class="form-control" placeholder="Type your answer here" style="display:none;">
+  <div id="questionBox" class="my-4 fs-5">Click Start to begin</div>
+  <input type="text" id="answerInput" class="form-control" placeholder="Type your answer here" style="display:none;">
 
-  <button onclick="nextQuestion()" id="nextBtn" class="btn btn-primary btn-next">Start</button>
-  <button onclick="showMomoDetails()" id="submitBtn" class="btn btn-success btn-next" style="display:none;">Submit Answers & Get MoMo</button>
+  <button onclick="nextQuestion()" id="nextBtn" class="btn btn-primary btn-next">Start</button>
+  <button onclick="showMomoDetails()" id="submitBtn" class="btn btn-success btn-next" style="display:none;">Submit Answers & Get MoMo</button>
 
-  <div id="ads">
-    <p class="text-muted text-center"><small>Advertisement</small></p>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-5504233917685167"
-         data-ad-slot="9668295398"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
+  <div id="ads">
+    <p class="text-muted text-center"><small>Advertisement</small></p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5504233917685167"
+         data-ad-slot="9668295398"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 </div>
 
 <div class="quiz-container" id="momoDetails">
-  <h5>🎉 Almost There! Enter Your MoMo Details</h5>
-  <p>To receive your 10 GHS, please provide your MoMo number and full name. This information will only be used for prize distribution.</p>
-  <form id="momoForm">
-    <div class="mb-3 text-start">
-      <label for="momoNumber" class="form-label">MoMo Number:</label>
-      <input type="tel" class="form-control" id="momoNumber" placeholder="e.g., 05XXXXXXXX" required pattern="[0-9]{10}">
-      <div class="form-text">Enter your 10-digit MoMo number.</div>
-    </div>
-    <div class="mb-3 text-start">
-      <label for="fullName" class="form-label">Full Name:</label>
-      <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
-    </div>
-    <button type="submit" class="btn btn-success btn-next">Claim My MoMo!</button>
-  </form>
-  <p class="text-muted mt-3"><small>Note: Prizes are distributed periodically. We will contact winners directly.</small></p>
+  <h5>🎉 Almost There! Enter Your MoMo Details</h5>
+  <p>To receive your 10 GHS, please provide your MoMo number and full name. This information will only be used for prize distribution.</p>
+  <form id="momoForm">
+    <div class="mb-3 text-start">
+      <label for="momoNumber" class="form-label">MoMo Number:</label>
+      <input type="tel" class="form-control" id="momoNumber" placeholder="e.g., 05XXXXXXXX" required pattern="[0-9]{10}">
+      <div class="form-text">Enter your 10-digit MoMo number.</div>
+    </div>
+    <div class="mb-3 text-start">
+      <label for="fullName" class="form-label">Full Name:</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
+    </div>
+    <button type="submit" class="btn btn-success btn-next">Claim My MoMo!</button>
+  </form>
+  <p class="text-muted mt-3"><small>Note: Prizes are distributed periodically. We will contact winners directly.</small></p>
 </div>
 
 <div class="quiz-container" id="completeMessage">
-  <div class="quiz-header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
-    <h4>✅ Submission Received!</h4>
-  </div>
-  <p>Thank you for submitting your details. To **qualify** for the MoMo prize, please share this quiz with at least **3 friends on WhatsApp**!</p>
-  <p class="text-muted">The more you share, the higher your chances of winning!</p>
-  <div class="mt-4">
-    <a href="#" class="btn btn-success btn-sm share-whatsapp" target="_blank">Share on WhatsApp</a>
-    <a href="#" class="btn btn-primary btn-sm ms-2 share-facebook" target="_blank">Share on Facebook</a>
-  </div>
+  <div class="quiz-header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
+    <h4>✅ Submission Received!</h4>
+  </div>
+  <p>Thank you for submitting your details. We'll contact you if you win the MoMo draw!</p>
+  <p class="text-muted">Share this page with friends to increase your chances.</p>
+  <div class="mt-4">
+    <a href="#" class="btn btn-success btn-sm share-whatsapp" target="_blank">Share on WhatsApp</a>
+    <a href="#" class="btn btn-primary btn-sm ms-2 share-facebook" target="_blank">Share on Facebook</a>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  const questions = [
-    "What is the capital of Ghana?",
-    "Which region is Kumasi located in?",
-    "How many regions are in Ghana?",
-    "Who was the first president of Ghana?",
-    "What does ECG stand for?",
-    "Which mobile network introduced MoMo?",
-    "Name a currency used in Ghana.",
-    "What does GES stand for?",
-    "In which month is Independence Day celebrated?",
-    "Which sea borders Ghana?",
-    "Name a popular Ghanaian dish.",
-    "Which city hosts Kejetia Market?",
-    "What color is on top of the Ghana flag?",
-    "Which day is Republic Day in Ghana?",
-    "What is the capital of Volta Region?",
-    "Who is the Black Stars captain?",
-    "Which bank is owned by the government?",
-    "What does WAEC stand for?",
-    "Where is Cape Coast Castle located?",
-    "Which crop is Ghana famous for?",
-    "What is Ghana’s international dialing code?",
-    "What does NHIS stand for?",
-    "What year did Ghana gain independence?",
-    "Which country is Ghana's neighbor to the east?",
-    "Who is Kwame Nkrumah?",
-    "What does DVLA handle?",
-    "What is the national currency symbol?",
-    "How many stars are on Ghana’s flag?",
-    "Name one polytechnic in Ghana.",
-    "Where is Legon located?",
-    "What is the largest region in Ghana?",
-    "Name a popular Ghanaian festival.",
-    "What does NSS mean?",
-    "What is the name of the Ghanaian parliament building?",
-    "Which city is known as the oil city?",
-    "Which airline is Ghana's national carrier?",
-    "Name a river in Ghana.",
-    "What is the name of Ghana’s current president?",
-    "What is the name of the Vice President?",
-    "What is the local name for plantain in Akan?",
-    "What is the meaning of “Akwaaba”?",
-    "What is the name of Ghana’s currency note?",
-    "Who was Ghana’s first female Chief Justice?",
-    "Name the official language of Ghana.",
-    "Name a university in Ghana.",
-    "What does BECE stand for?",
-    "What is the education regulatory body in Ghana?",
-    "Where is the Manhyia Palace located?",
-    "What is the currency of Ghana called?",
-    "Which sport is most popular in Ghana?"
-  ];
+  const questions = [
+    "What is the capital of Ghana?",
+    "Which region is Kumasi located in?",
+    "How many regions are in Ghana?",
+    "Who was the first president of Ghana?",
+    "What does ECG stand for?",
+    "Which mobile network introduced MoMo?",
+    "Name a currency used in Ghana.",
+    "What does GES stand for?",
+    "In which month is Independence Day celebrated?",
+    "Which sea borders Ghana?",
+    "Name a popular Ghanaian dish.",
+    "Which city hosts Kejetia Market?",
+    "What color is on top of the Ghana flag?",
+    "Which day is Republic Day in Ghana?",
+    "What is the capital of Volta Region?",
+    "Who is the Black Stars captain?",
+    "Which bank is owned by the government?",
+    "What does WAEC stand for?",
+    "Where is Cape Coast Castle located?",
+    "Which crop is Ghana famous for?",
+    "What is Ghana’s international dialing code?",
+    "What does NHIS stand for?",
+    "What year did Ghana gain independence?",
+    "Which country is Ghana's neighbor to the east?",
+    "Who is Kwame Nkrumah?",
+    "What does DVLA handle?",
+    "What is the national currency symbol?",
+    "How many stars are on Ghana’s flag?",
+    "Name one polytechnic in Ghana.",
+    "Where is Legon located?",
+    "What is the largest region in Ghana?",
+    "Name a popular Ghanaian festival.",
+    "What does NSS mean?",
+    "What is the name of the Ghanaian parliament building?",
+    "Which city is known as the oil city?",
+    "Which airline is Ghana's national carrier?",
+    "Name a river in Ghana.",
+    "What is the name of Ghana’s current president?",
+    "What is the name of the Vice President?",
+    "What is the local name for plantain in Akan?",
+    "What is the meaning of “Akwaaba”?",
+    "What is the name of Ghana’s currency note?",
+    "Who was Ghana’s first female Chief Justice?",
+    "Name the official language of Ghana.",
+    "Name a university in Ghana.",
+    "What does BECE stand for?",
+    "What is the education regulatory body in Ghana?",
+    "Where is the Manhyia Palace located?",
+    "What is the currency of Ghana called?",
+    "Which sport is most popular in Ghana?"
+  ];
 
-  let currentQIndex = 0; // Tracks the current question index
-  let userAnswers = []; // To store user's answers for each question
+  let currentQIndex = 0; // Tracks the current question index
+  let userAnswers = []; // To store user's answers for each question
 
-  const questionBox = document.getElementById("questionBox");
-  const answerInput = document.getElementById("answerInput");
-  const adsBox = document.getElementById("ads");
-  const nextBtn = document.getElementById("nextBtn");
-  const submitBtn = document.getElementById("submitBtn");
-  const quizInstructions = document.getElementById("quizInstructions");
-  const momoDetailsSection = document.getElementById("momoDetails");
-  const completeMessageSection = document.getElementById("completeMessage");
-  const momoForm = document.getElementById("momoForm");
+  const questionBox = document.getElementById("questionBox");
+  const answerInput = document.getElementById("answerInput");
+  const adsBox = document.getElementById("ads");
+  const nextBtn = document.getElementById("nextBtn");
+  const submitBtn = document.getElementById("submitBtn");
+  const quizInstructions = document.getElementById("quizInstructions");
+  const momoDetailsSection = document.getElementById("momoDetails");
+  const completeMessageSection = document.getElementById("completeMessage");
+  const momoForm = document.getElementById("momoForm");
 
-  // Function to save quiz state to localStorage before refresh
-  function saveQuizState() {
-    localStorage.setItem('currentQIndex', currentQIndex);
-    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-    localStorage.setItem('quizStarted', 'true'); // Flag to indicate quiz has started
-  }
+  // Function to save quiz state to localStorage before refresh
+  function saveQuizState() {
+    localStorage.setItem('currentQIndex', currentQIndex);
+    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+    localStorage.setItem('quizStarted', 'true'); // Flag to indicate quiz has started
+  }
 
-  // Function to load quiz state from localStorage on page load
-  function loadQuizState() {
-    const savedIndex = localStorage.getItem('currentQIndex');
-    const savedAnswers = localStorage.getItem('userAnswers');
-    const quizStarted = localStorage.getItem('quizStarted');
+  // Function to load quiz state from localStorage on page load
+  function loadQuizState() {
+    const savedIndex = localStorage.getItem('currentQIndex');
+    const savedAnswers = localStorage.getItem('userAnswers');
+    const quizStarted = localStorage.getItem('quizStarted');
 
-    if (quizStarted === 'true' && savedIndex !== null && savedAnswers !== null) {
-      currentQIndex = parseInt(savedIndex, 10);
-      userAnswers = JSON.parse(savedAnswers);
-      
-      // If we've completed all questions on a previous load, show submit button
-      if (currentQIndex === questions.length) {
-        questionBox.innerText = "Quiz Completed!";
-        answerInput.style.display = "none";
-        nextBtn.style.display = "none";
-        submitBtn.style.display = "inline-block";
-        quizInstructions.innerText = "You've answered all questions! Click 'Submit Answers & Get MoMo' to proceed.";
-        adsBox.style.display = "block"; // Keep ads visible
-      } else {
-        // Continue from where we left off
-        questionBox.innerText = questions[currentQIndex];
-        nextBtn.innerText = "Next Question";
-        answerInput.style.display = "block";
-        adsBox.style.display = "block"; // Show ads if quiz is in progress
-        quizInstructions.innerText = `Question ${currentQIndex + 1} of ${questions.length}: Answer the question below.`;
-      }
-    } else {
-      // Quiz not started or reset, display initial message
-      questionBox.innerText = "Click Start to begin";
-      nextBtn.innerText = "Start";
-      answerInput.style.display = "none"; // Hide input until start
-    }
-  }
+    if (quizStarted === 'true' && savedIndex !== null && savedAnswers !== null) {
+      currentQIndex = parseInt(savedIndex, 10);
+      userAnswers = JSON.parse(savedAnswers);
+      
+      // If we've completed all questions on a previous load, show submit button
+      if (currentQIndex === questions.length) {
+        questionBox.innerText = "Quiz Completed!";
+        answerInput.style.display = "none";
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "inline-block";
+        quizInstructions.innerText = "Click 'Submit Answers & Get MoMo' to proceed.";
+        adsBox.style.display = "block"; // Keep ads visible
+      } else {
+        // Continue from where we left off
+        questionBox.innerText = questions[currentQIndex];
+        nextBtn.innerText = "Next Question";
+        answerInput.style.display = "block";
+        adsBox.style.display = "block"; // Show ads if quiz is in progress
+        quizInstructions.innerText = "Answer the current question:";
+      }
+    } else {
+      // Quiz not started or reset, display initial message
+      questionBox.innerText = "Click Start to begin";
+      nextBtn.innerText = "Start";
+      answerInput.style.display = "none"; // Hide input until start
+    }
+  }
 
-  // Load state when the page loads
-  document.addEventListener('DOMContentLoaded', loadQuizState);
+  // Load state when the page loads
+  document.addEventListener('DOMContentLoaded', loadQuizState);
 
-  function nextQuestion() {
-    // If it's not the very first "Start" click, store the answer
-    // And ensure an answer is provided for subsequent questions
-    if (nextBtn.innerText === "Next Question") { // Only validate if not "Start" button
-      const currentAnswer = answerInput.value.trim();
-      if (currentAnswer === "") {
-        alert("Please provide an answer before proceeding.");
-        return; // Stop the function if no answer
-      }
-      userAnswers.push(currentAnswer); // Store the current answer
-      answerInput.value = ''; // Clear the input field for the next question
-    } else {
-      // This is the first "Start" click
-      quizInstructions.innerText = `Question ${currentQIndex + 1} of ${questions.length}: Answer the question below.`;
-      answerInput.style.display = "block";
-      nextBtn.innerText = "Next Question";
-      adsBox.style.display = "block"; // Show ads
-    }
+  function nextQuestion() {
+    // If it's not the very first "Start" click, store the answer
+    // And ensure an answer is provided for subsequent questions
+    if (nextBtn.innerText === "Next Question") { // Only validate if not "Start" button
+      const currentAnswer = answerInput.value.trim();
+      if (currentAnswer === "") {
+        alert("Please provide an answer before proceeding.");
+        return; // Stop the function if no answer
+      }
+      userAnswers.push(currentAnswer); // Store the current answer
+      answerInput.value = ''; // Clear the input field for the next question
+    } else {
+      // This is the first "Start" click
+      quizInstructions.innerText = "Answer the current question:";
+    }
 
-    // Increment question index for the next question to be displayed after refresh
-    currentQIndex++;
+    // Increment question index for the next question to be displayed after refresh
+    currentQIndex++;
 
-    // Save state before refreshing
-    saveQuizState();
+    // Save state before refreshing
+    saveQuizState();
 
-    // Trigger page refresh
-    window.location.reload();
-  }
+    // Trigger page refresh
+    window.location.reload();
+  }
 
-  // Function called when "Submit Answers & Get MoMo" is clicked
-  function showMomoDetails() {
-      // Store the answer for the very last question before proceeding
-      const lastAnswer = answerInput.value.trim();
-      if (lastAnswer === "" && currentQIndex === questions.length) { // Only validate if it's indeed the final submit and an answer is expected
-         alert("Please provide an answer for the last question.");
-         return;
-      }
-      if (lastAnswer !== "" && currentQIndex === questions.length) {
-          userAnswers.push(lastAnswer);
-      }
+  // Function called when "Submit Answers & Get MoMo" is clicked
+  function showMomoDetails() {
+      // Store the answer for the very last question before proceeding
+      const lastAnswer = answerInput.value.trim();
+      if (lastAnswer === "" && currentQIndex === questions.length) { // Only validate if it's indeed the final submit and an answer is expected
+         alert("Please provide an answer for the last question.");
+         return;
+      }
+      if (lastAnswer !== "" && currentQIndex === questions.length) {
+          userAnswers.push(lastAnswer);
+      }
 
-      console.log("All collected answers:", userAnswers); // For debugging: see all answers
+      console.log("All collected answers:", userAnswers); // For debugging: see all answers
 
-      document.getElementById("quizBox").style.display = "none";
-      momoDetailsSection.style.display = "block";
+      document.getElementById("quizBox").style.display = "none";
+      momoDetailsSection.style.display = "block";
 
-      // Clear quiz state from localStorage as quiz is 'completed'
-      localStorage.removeItem('currentQIndex');
-      localStorage.removeItem('userAnswers');
-      localStorage.removeItem('quizStarted');
-  }
+      // Clear quiz state from localStorage as quiz is 'completed'
+      localStorage.removeItem('currentQIndex');
+      localStorage.removeItem('userAnswers');
+      localStorage.removeItem('quizStarted');
+  }
 
-  // Handle MoMo form submission
-  momoForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+  // Handle MoMo form submission
+  momoForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-    const momoNumber = document.getElementById("momoNumber").value.trim();
-    const fullName = document.getElementById("fullName").value.trim();
+    const momoNumber = document.getElementById("momoNumber").value.trim();
+    const fullName = document.getElementById("fullName").value.trim();
 
-    if (!momoNumber || !fullName) {
-      alert("Please fill in all MoMo details.");
-      return;
-    }
+    if (!momoNumber || !fullName) {
+      alert("Please fill in all MoMo details.");
+      return;
+    }
 
-    // In a real application, you would send this data to a server
-    // For example, using fetch API:
-    /*
-    fetch('/submit-momo-details', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        quizAnswers: userAnswers, // Send all collected answers with MoMo details
-        momoNumber: momoNumber,
-        fullName: fullName
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      momoDetailsSection.style.display = "none";
-      completeMessageSection.style.display = "block";
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('There was an error submitting your details. Please try again.');
-    });
-    */
+    // In a real application, you would send this data to a server
+    // For example, using fetch API:
+    /*
+    fetch('/submit-momo-details', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quizAnswers: userAnswers, // Send all collected answers with MoMo details
+        momoNumber: momoNumber,
+        fullName: fullName
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      momoDetailsSection.style.display = "none";
+      completeMessageSection.style.display = "block";
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('There was an error submitting your details. Please try again.');
+    });
+    */
 
-    // For now, just simulate success:
-    console.log("MoMo Number:", momoNumber);
-    console.log("Full Name:", fullName);
-    console.log("User answers submitted with MoMo details:", userAnswers);
+    // For now, just simulate success:
+    console.log("MoMo Number:", momoNumber);
+    console.log("Full Name:", fullName);
+    console.log("User answers submitted with MoMo details:", userAnswers);
 
-    momoDetailsSection.style.display = "none";
-    completeMessageSection.style.display = "block";
-  });
+    momoDetailsSection.style.display = "none";
+    completeMessageSection.style.display = "block";
+  });
 
 
-  // Set the correct URL for sharing buttons on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    const pageUrl = encodeURIComponent(window.location.href);
-    document.querySelector('.share-whatsapp').href = `https://wa.me/?text=I%20just%20completed%20the%20Ghana%20Quiz%20and%20entered%20to%20win%20MoMo!%20Can%20you%20do%20it?%20${pageUrl}`;
-    document.querySelector('.share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-  });
+  // Set the correct URL for sharing buttons on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const pageUrl = encodeURIComponent(window.location.href);
+    document.querySelector('.share-whatsapp').href = `https://wa.me/?text=I%20just%20completed%20the%20Ghana%20Quiz%20and%20entered%20to%20win%20MoMo!%20Can%20you%20do%20it?%20${pageUrl}`;
+    document.querySelector('.share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  });
 
-</script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D1GV6WX7XY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D1GV6WX7XY');
 </script>
 
 </body>
