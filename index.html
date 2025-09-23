@@ -2,18 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Win Free MoMo - Ghana Quiz Challenge</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167"
+     crossorigin="anonymous"></script>
+  <title>Global Knowledge Challenge - Win a $1000!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
-<script>
-  window.googletag = window.googletag || {cmd: []};
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/23296292140/quizmiddle', [[300, 250], [336, 280]], 'div-gpt-ad-1758575454450-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
-    googletag.enableServices();
-  });
-</script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -45,7 +37,7 @@
       border-radius: 10px;
       border: 1px dashed #ced4da;
     }
-    .ghana-flag {
+    .quiz-icon {
       width: 50px;
       height: auto;
       margin-right: 15px;
@@ -81,19 +73,19 @@
       padding: 15px;
       font-size: 1.05rem;
     }
-    #momoDetails, #completeMessage {
+    #prizeDetails, #completeMessage {
       display: none;
     }
-    #momoDetails {
+    #prizeDetails {
       margin-top: 30px;
       padding: 20px;
-      background-color: #e6ffe6;
-      border: 1px solid #c3e6cb;
+      background-color: #e6f7ff; /* Light blue background */
+      border: 1px solid #b3e0ff;
       border-radius: 10px;
       text-align: left;
     }
-    #momoDetails h5 {
-      color: #28a745;
+    #prizeDetails h5 {
+      color: #007bff; /* Blue header */
       margin-bottom: 15px;
     }
     /* Mobile Responsiveness */
@@ -116,45 +108,34 @@
 
 <div class="quiz-container" id="quizBox">
   <div class="quiz-header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
-    <h3>Answer & Win MoMo!</h3>
+    <img src="https://img.icons8.com/color/96/000000/globe--v1.png" alt="Globe Icon" class="quiz-icon">
+    <h3>Global Knowledge Challenge</h3>
   </div>
-  <p class="text-muted" id="quizInstructions">Answer all 200 questions for a chance to win 1000 GHS.</p>
+  <p class="text-muted" id="quizInstructions">Answer all 200 questions for a chance to win a cash prize!</p>
 
   <div id="questionBox" class="my-4 fs-5">Click Start to begin</div>
   
   <div id="optionsContainer" class="d-grid gap-2 mt-3">
-    </div>
+  </div>
 
   <button onclick="startQuiz()" id="startBtn" class="btn btn-primary btn-action">Start</button>
-  <button onclick="showMomoDetails()" id="submitBtn" class="btn btn-success btn-action" style="display:none;">Submit & Enter Draw</button>
+  <button onclick="showPrizeDetails()" id="submitBtn" class="btn btn-success btn-action" style="display:none;">Submit & Enter Draw</button>
 
   <div id="ads">
-   <p class="text-muted text-center"><small>Ad</small></p>
-
-<!-- /23296292140/quizmiddle -->
-<div id="div-gpt-ad-1758575454450-0" style="min-width:300px; min-height:250px;"></div>
-
-<script>
-  googletag.cmd.push(function() { 
-    googletag.display('div-gpt-ad-1758575454450-0'); 
-  });
-</script>
-
-  </div>
+    </div>
 </div>
 
-<div class="quiz-container" id="momoDetails">
-  <h5>🎉 Almost There! Enter Your MoMo Details</h5>
-  <p>To receive your 10 GHS if you win, please provide your MoMo number and full name.</p>
-  <form id="momoForm">
-    <div class="mb-3 text-start">
-      <label for="momoNumber" class="form-label">MoMo Number:</label>
-      <input type="tel" class="form-control" id="momoNumber" placeholder="e.g., 05XXXXXXXX" required pattern="[0-9]{10}">
-    </div>
+<div class="quiz-container" id="prizeDetails">
+  <h5>🎉 Almost There! Enter Your Details</h5>
+  <p>To receive your prize if you win, please provide your contact details.</p>
+  <form id="prizeForm">
     <div class="mb-3 text-start">
       <label for="fullName" class="form-label">Full Name:</label>
       <input type="text" class="form-control" id="fullName" placeholder="Your Full Name" required>
+    </div>
+    <div class="mb-3 text-start">
+      <label for="email" class="form-label">Email Address:</label>
+      <input type="email" class="form-control" id="email" placeholder="e.g., you@example.com" required>
     </div>
     <button type="submit" class="btn btn-success btn-action">Claim My Entry!</button>
   </form>
@@ -162,198 +143,204 @@
 
 <div class="quiz-container" id="completeMessage">
   <div class="quiz-header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/255px-Flag_of_Ghana.svg.png" alt="Ghana Flag" class="ghana-flag">
+     <img src="https://img.icons8.com/color/96/000000/ok--v1.png" alt="Checkmark Icon" class="quiz-icon">
     <h4>✅ Submission Received!</h4>
   </div>
-  <p>Thank you for participating! We'll contact you if you win the MoMo draw. Good luck!</p>
+  <p>Thank you for participating! Winners will be contacted via email. Good luck!</p>
   <p class="text-muted">Share this page with friends to earn bonus entries.</p>
 </div>
 
 <script>
   const questions = [
-    { q: "What is the capital of Ghana?", options: ["Kumasi", "Accra", "Takoradi", "Tamale"], answer: "Accra" },
-    { q: "Which region is Kumasi located in?", options: ["Greater Accra", "Ashanti", "Volta", "Western"], answer: "Ashanti" },
-    { q: "How many administrative regions are in Ghana as of 2024?", options: ["10", "12", "16", "14"], answer: "16" },
-    { q: "Who was the first president of Ghana?", options: ["J.B. Danquah", "Kofi Annan", "Kwame Nkrumah", "Jerry Rawlings"], answer: "Kwame Nkrumah" },
-    { q: "What does ECG stand for?", options: ["Energy Company of Ghana", "Electricity Corporation of Ghana", "Electricity Company of Ghana", "Electronic Current of Ghana"], answer: "Electricity Company of Ghana" },
-    { q: "Which mobile network introduced Mobile Money (MoMo) in Ghana?", options: ["Vodafone", "AirtelTigo", "Glo", "MTN"], answer: "MTN" },
-    { q: "What is the official currency of Ghana?", options: ["Naira", "Cedi", "Franc", "Dollar"], answer: "Cedi" },
-    { q: "What does GES stand for?", options: ["Ghanaian Education Service", "Ghana Education Service", "General Education System", "Governmental Education Service"], answer: "Ghana Education Service" },
-    { q: "In which month is Ghana's Independence Day celebrated?", options: ["July", "December", "March", "August"], answer: "March" },
-    { q: "What is the name of the large artificial lake in Ghana?", options: ["Lake Bosomtwe", "Volta Lake", "Weija Lake", "Keta Lagoon"], answer: "Volta Lake" },
-    { q: "Which popular Ghanaian dish is made from fermented corn dough?", options: ["Fufu", "Banku", "Kenkey", "Waakye"], answer: "Kenkey" },
-    { q: "Which city hosts the largest open-air market in West Africa, Kejetia Market?", options: ["Accra", "Takoradi", "Kumasi", "Cape Coast"], answer: "Kumasi" },
-    { q: "What color is at the top of the Ghanaian flag?", options: ["Red", "Gold", "Green", "Black"], answer: "Red" },
-    { q: "Ghana became a republic on which date?", options: ["March 6, 1957", "July 1, 1960", "August 4, 1947", "January 7, 1993"], answer: "July 1, 1960" },
-    { q: "What is the capital of the Volta Region?", options: ["Ho", "Koforidua", "Sunyani", "Bolgatanga"], answer: "Ho" },
-    { q: "Who is the all-time top scorer for the Ghana national football team, the Black Stars?", options: ["Abedi Pele", "Tony Yeboah", "Asamoah Gyan", "André Ayew"], answer: "Asamoah Gyan" },
-    { q: "Which of these banks is a state-owned commercial bank?", options: ["Ecobank", "GCB Bank PLC", "Fidelity Bank", "CalBank"], answer: "GCB Bank PLC" },
-    { q: "What does WAEC stand for?", options: ["West African Examination Council", "Western Area Education Committee", "West African Education Council", "West African Entrance Certificate"], answer: "West African Examination Council" },
-    { q: "The Cape Coast Castle is located in which region?", options: ["Western", "Greater Accra", "Central", "Volta"], answer: "Central" },
-    { q: "Ghana is the world's second-largest producer of which crop?", options: ["Coffee", "Rubber", "Cocoa", "Palm oil"], answer: "Cocoa" },
-    { q: "What is Ghana’s international telephone dialing code?", options: ["+234", "+225", "+233", "+243"], answer: "+233" },
-    { q: "What does NHIS stand for?", options: ["National Health Insurance Scheme", "National Health Information System", "New Health Insurance Service", "National Hospital Insurance Scheme"], answer: "National Health Insurance Scheme" },
-    { q: "In what year did Ghana gain independence from Britain?", options: ["1960", "1957", "1966", "1955"], answer: "1957" },
-    { q: "Which country borders Ghana to the east?", options: ["Burkina Faso", "Ivory Coast", "Togo", "Benin"], answer: "Togo" },
-    { q: "Kwame Nkrumah was a founding member of which organization?", options: ["United Nations", "African Union", "Organisation of African Unity", "ECOWAS"], answer: "Organisation of African Unity" },
-    { q: "What does DVLA handle in Ghana?", options: ["Voter Registration", "Driver and Vehicle Licensing", "Land Valuation", "Domestic Violence"], answer: "Driver and Vehicle Licensing" },
-    { q: "What is the symbol for the Ghanaian Cedi?", options: ["₵", "C", "GH₵", "GHS"], answer: "GH₵" },
-    { q: "How many stars are on the national flag of Ghana?", options: ["One", "Three", "Five", "Two"], answer: "One" },
-    { q: "Which of these is a major technical university in Ghana?", options: ["University of Ghana", "KNUST", "Accra Technical University", "University of Cape Coast"], answer: "Accra Technical University" },
-    { q: "The University of Ghana is located in which suburb of Accra?", options: ["Osu", "Madina", "Legon", "Circle"], answer: "Legon" },
-    { q: "By land area, what was the largest region in Ghana before the creation of new regions?", options: ["Ashanti", "Northern", "Eastern", "Brong-Ahafo"], answer: "Northern" },
-    { q: "The Homowo festival is celebrated by which ethnic group?", options: ["Ewe", "Asante", "Ga-Adangbe", "Fante"], answer: "Ga-Adangbe" },
-    { q: "What does NSS stand for in the context of Ghanaian graduates?", options: ["National Savings Scheme", "National Security Service", "National Service Scheme", "New School System"], answer: "National Service Scheme" },
-    { q: "What is the official seat of the Ghanaian parliament called?", options: ["Flagstaff House", "Osu Castle", "Parliament House", "The Jubilee House"], answer: "Parliament House" },
-    { q: "Which Ghanaian city is often referred to as the 'Oil City'?", options: ["Tema", "Takoradi", "Aflao", "Elmina"], answer: "Takoradi" },
-    { q: "The Adomi Bridge spans which river?", options: ["Pra River", "Ankobra River", "Tano River", "Volta River"], answer: "Volta River" },
-    { q: "What does the Akan word 'Akwaaba' mean?", options: ["Goodbye", "Thank you", "Welcome", "Sorry"], answer: "Welcome" },
-    { q: "Who was the first female Chief Justice of Ghana?", options: ["Joyce Bamford-Addo", "Sophia Akuffo", "Georgina Theodora Wood", "Gloria Akuffo"], answer: "Georgina Theodora Wood" },
-    { q: "What is the official language of Ghana?", options: ["Twi", "French", "English", "Hausa"], answer: "English" },
-    { q: "What does BECE stand for?", options: ["Basic Education Certificate Exam", "Board Entrance Certificate Exam", "Basic Entrance Competency Exam", "Bureau of Education Certification"], answer: "Basic Education Certificate Exam" },
-    { q: "The Manhyia Palace is the seat of which monarch?", options: ["Ga Mantse", "Yaa Naa", "Asantehene", "Togbe Afede"], answer: "Asantehene" },
-    { q: "Which sport is considered the most popular in Ghana?", options: ["Boxing", "Athletics", "Football", "Basketball"], answer: "Football" },
-    { q: "The Akosombo Dam is primarily used for generating what?", options: ["Drinking Water", "Irrigation", "Hydroelectric Power", "Tourism"], answer: "Hydroelectric Power" },
-    { q: "Which former UN Secretary-General was from Ghana?", options: ["Boutros Boutros-Ghali", "Kofi Annan", "Ban Ki-moon", "Trygve Lie"], answer: "Kofi Annan" },
-    { q: "The Wli Waterfalls are located in which region?", options: ["Oti", "Eastern", "Volta", "Bono East"], answer: "Volta" },
-    { q: "The currency sub-unit of the Ghana Cedi is the...", options: ["Kobo", "Pesewa", "Cent", "Shilling"], answer: "Pesewa" },
-    { q: "Which political party does the current President Nana Akufo-Addo belong to?", options: ["NDC", "CPP", "NPP", "PNC"], answer: "NPP" },
-    { q: "The National Theatre in Accra is noted for its unique architectural design resembling a...", options: ["Star", "Ship", "Drum", "Eagle"], answer: "Ship" },
-    { q: "Which Ghanaian festival is known as the 'Hogbetsotso Festival'?", options: ["Celebrated by the Anlo Ewes", "Celebrated by the Fantes", "Celebrated by the Dagombas", "Celebrated by the Ashantis"], answer: "Celebrated by the Anlo Ewes" },
-    { q: "Who designed the national flag of Ghana?", options: ["Ephraim Amu", "Theodosia Okoh", "Philip Gbeho", "J.B. Danquah"], answer: "Theodosia Okoh" },
-    { q: "The term 'Gold Coast' was the colonial name for which country?", options: ["Nigeria", "Sierra Leone", "Ghana", "Ivory Coast"], answer: "Ghana" },
-    { q: "Which castle was the seat of the Ghanaian government until 2013?", options: ["Cape Coast Castle", "Elmina Castle", "Osu Castle", "Christiansborg Castle"], answer: "Osu Castle" },
-    { q: "The Mole National Park is located in which region?", options: ["Savannah", "Upper West", "North East", "Upper East"], answer: "Savannah" },
-    { q: "What is the title of the traditional ruler of the Dagbon kingdom?", options: ["Nayiri", "Bawku Naba", "Yaa Naa", "Bolewura"], answer: "Yaa Naa" },
-    { q: "The 'Big Six' are remembered for their role in...", options: ["Winning the AFCON", "Ghana's independence struggle", "Writing the constitution", "Discovering gold"], answer: "Ghana's independence struggle" },
-    { q: "Which Ghanaian musician is known for pioneering Hiplife music?", options: ["Sarkodie", "Reggie Rockstone", "Shatta Wale", "Amakye Dede"], answer: "Reggie Rockstone" },
-    { q: "The Peduase Lodge is a presidential retreat located in which region?", options: ["Greater Accra", "Central", "Eastern", "Volta"], answer: "Eastern" },
-    { q: "What is 'Waakye'?", options: ["A spicy kebab", "A rice and beans dish", "A corn and cassava dough", "A peanut butter soup"], answer: "A rice and beans dish" },
-    { q: "The University for Development Studies (UDS) has its main campus in...", options: ["Wa", "Bolgatanga", "Tamale", "Navrongo"], answer: "Tamale" },
-    { q: "Which of these is NOT a neighboring country of Ghana?", options: ["Togo", "Nigeria", "Burkina Faso", "Côte d'Ivoire"], answer: "Nigeria" },
-    { q: "The black star on the Ghanaian flag is a symbol of...", options: ["African emancipation", "The rich minerals of the land", "The forests of Ghana", "The blood of freedom fighters"], answer: "African emancipation" },
-    { q: "Which body is responsible for conducting elections in Ghana?", options: ["National Identification Authority", "Electoral Commission", "Ghana Police Service", "Parliament of Ghana"], answer: "Electoral Commission" },
-    { q: "The Kwame Nkrumah Mausoleum is located in...", options: ["Kumasi", "Cape Coast", "Accra", "Nkroful"], answer: "Accra" },
-    { q: "Which region is known for its capital, Sunyani?", options: ["Ahafo", "Bono", "Bono East", "Western North"], answer: "Bono" },
-    { q: "The term 'dumsor' in Ghana refers to...", options: ["Heavy traffic", "Persistent power outages", "Flooding", "A political rally"], answer: "Persistent power outages" },
-    { q: "Which of these is a famous brand of Ghanaian chocolate?", options: ["Cadbury", "Lindt", "Kingsbite", "Hershey's"], answer: "Kingsbite" },
-    { q: "The Aboakyer festival, involving a deer hunt, is celebrated in which town?", options: ["Elmina", "Winneba", "Cape Coast", "Saltpond"], answer: "Winneba" },
-    { q: "What is the capital of the Western Region?", options: ["Takoradi", "Tarkwa", "Sekondi-Takoradi", "Axim"], answer: "Sekondi-Takoradi" },
-    { q: "The Ghana Police Service's emergency number is...", options: ["911", "191", "18555", "999"], answer: "191" },
-    { q: "Which Ghanaian was a former President of the UN General Assembly?", options: ["Alex Quaison-Sackey", "Kofi Annan", "Nana Akufo-Addo", "John Kufuor"], answer: "Alex Quaison-Sackey" },
-    { q: "The Boti Falls are located in which region?", options: ["Volta", "Oti", "Eastern", "Ashanti"], answer: "Eastern" },
-    { q: "What is the main ingredient in 'fufu'?", options: ["Yam and Plantain", "Corn and Cassava", "Rice and Millet", "Sorghum and Wheat"], answer: "Yam and Plantain" },
-    { q: "Which Ghanaian boxer was known as 'Azumah Nelson'?", options: ["Ike Quartey", "Joshua Clottey", "Azumah Nelson", "DK Poison"], answer: "Azumah Nelson" },
-    { q: "The Kotoka International Airport is named after...", options: ["A former president", "A military officer", "A traditional chief", "An independence leader"], answer: "A military officer" },
-    { q: "Ghana's parliament is...", options: ["Bicameral (two houses)", "Unicameral (one house)", "Tricameral (three houses)", "Non-cameral"], answer: "Unicameral (one house)" },
-    { q: "The Shai Hills Resource Reserve is in which region?", options: ["Eastern", "Volta", "Greater Accra", "Central"], answer: "Greater Accra" },
-    { q: "Which country was formerly known as Upper Volta?", options: ["Togo", "Burkina Faso", "Mali", "Niger"], answer: "Burkina Faso" },
-    { q: "The colors of the Ghanaian flag are Red, Gold, Green, and...", options: ["White", "Blue", "Black", "Yellow"], answer: "Black" },
-    { q: "What does 'trotro' refer to in Ghana?", options: ["A type of food", "A private taxi", "A commercial minibus", "A motorcycle"], answer: "A commercial minibus" },
-    { q: "The National Service period for Ghanaian graduates is typically how long?", options: ["6 months", "1 year", "18 months", "2 years"], answer: "1 year" },
-    { q: "Which region's capital is Goaso?", options: ["Bono", "Ahafo", "Western North", "Oti"], answer: "Ahafo" },
-    { q: "The Ghana cedi was re-denominated in which year?", options: ["2000", "2010", "2007", "1999"], answer: "2007" },
-    { q: "Who composed Ghana's national anthem?", options: ["Ephraim Amu", "Kwame Nkrumah", "Philip Gbeho", "J.H. Kwabena Nketia"], answer: "Philip Gbeho" },
-    { q: "The highest mountain in Ghana is...", options: ["Mount Afadja (Afadjato)", "Mount Edouka", "Mount Atiwiredu", "Akwapim-Togo Range"], answer: "Mount Afadja (Afadjato)" },
-    { q: "Which region has the capital Nalerigu?", options: ["Savannah", "North East", "Upper West", "Oti"], answer: "North East" },
-    { q: "The famous 'Canopy Walk' is a feature of which national park?", options: ["Mole National Park", "Kakum National Park", "Bia National Park", "Digya National Park"], answer: "Kakum National Park" },
-    { q: "What is the local name for a spicy kebab in Ghana?", options: ["Suya", "Kelewele", "Chichinga", "Dombolo"], answer: "Chichinga" },
-    { q: "The Golden Stool ('Sika Dwa Kofi') is a sacred symbol of which kingdom?", options: ["Ga", "Ewe", "Dagbon", "Asante"], answer: "Asante" },
-    { q: "In Ghana, JHS stands for...", options: ["Junior High School", "Joint High School", "Junior Honours School", "Judicial High School"], answer: "Junior High School" },
-    { q: "What is the capital of the Upper West Region?", options: ["Bolgatanga", "Wa", "Tamale", "Nalerigu"], answer: "Wa" },
-    { q: "Which of these is a popular Ghanaian textile?", options: ["Ankara", "Kente", "Batik", "Shweshwe"], answer: "Kente" },
-    { q: "The Tema Motorway connects Tema to which city?", options: ["Koforidua", "Accra", "Aflao", "Cape Coast"], answer: "Accra" },
-    { q: "Who was the chairman of the PNDC military government?", options: ["I.K. Acheampong", "Jerry John Rawlings", "Akwasi Afrifa", "Fred Akuffo"], answer: "Jerry John Rawlings" },
-    { q: "What is the capital of the Bono East Region?", options: ["Techiman", "Sunyani", "Kintampo", "Nkoranza"], answer: "Techiman" },
-    { q: "Which mineral is NOT significantly mined in Ghana?", options: ["Gold", "Diamonds", "Bauxite", "Copper"], answer: "Copper" },
-    { q: "Lake Bosomtwe is a natural lake formed by a...", options: ["Volcanic eruption", "Meteorite impact", "Glacial melt", "Tectonic shift"], answer: "Meteorite impact" },
-    { q: "Which of these languages is a member of the Akan language group?", options: ["Ewe", "Ga", "Fante", "Dagbani"], answer: "Fante" },
-    { q: "The 'Year of Return' initiative in Ghana took place in which year?", options: ["2007", "2017", "2019", "2020"], answer: "2019" },
-    { q: "What is the capital of the Savannah Region?", options: ["Damongo", "Salaga", "Bole", "Yapei"], answer: "Damongo" },
-    // Adding more questions to reach 200
-    { q: "Ghana's coat of arms features two eagles and a...", options: ["Lion", "Leopard", "Black Star", "Sword"], answer: "Black Star" },
-    { q: "The currency 'Cedi' is named after...", options: ["A king", "A river", "Cowrie shells", "A type of tree"], answer: "Cowrie shells" },
-    { q: "Which Ghanaian city is closest to the Prime Meridian?", options: ["Accra", "Tema", "Takoradi", "Aflao"], answer: "Tema" },
-    { q: "The term 'Abongo Boys' is a colloquial name for...", options: ["Police officers", "Students", "Soldiers", "Fishermen"], answer: "Soldiers" },
-    { q: "What is 'Kelewele'?", options: ["Fried yam sticks", "Spicy fried plantain", "Grilled tilapia", "Corn porridge"], answer: "Spicy fried plantain" },
-    { q: "Which region has Dambai as its capital?", options: ["Volta", "Oti", "Bono East", "North East"], answer: "Oti" },
-    { q: "Who was the leader of the 'United Gold Coast Convention' (UGCC)?", options: ["Kwame Nkrumah", "J.B. Danquah", "Paa Grant", "Ako Adjei"], answer: "Paa Grant" },
-    { q: "The Akwapim-Togo mountain range runs along Ghana's border with...", options: ["Burkina Faso", "Ivory Coast", "Togo", "Benin"], answer: "Togo" },
-    { q: "What is the name of Ghana's national airline?", options: ["There is no national airline", "Ghana Airways", "Air Ghana", "Africa World Airlines"], answer: "Africa World Airlines" },
-    { q: "The 'Right to Information' (RTI) bill was passed in Ghana in which year?", options: ["2005", "2012", "2019", "2021"], answer: "2019" },
-    { q: "What is the main purpose of the 'Planting for Food and Jobs' policy?", options: ["Boost agriculture", "Create tech jobs", "Improve education", "Promote tourism"], answer: "Boost agriculture" },
-    { q: "Which region has Sefwi Wiawso as its capital?", options: ["Western", "Ahafo", "Western North", "Bono"], answer: "Western North" },
-    { q: "The Elmina Castle was originally built by the...", options: ["British", "Dutch", "Portuguese", "Danish"], answer: "Portuguese" },
-    { q: "Which Ghanaian president was in office during the 2014 World Cup?", options: ["John Kufuor", "John Atta Mills", "John Mahama", "Nana Akufo-Addo"], answer: "John Mahama" },
-    { q: "The Kofi Annan International Peacekeeping Training Centre is located in...", options: ["Kumasi", "Accra", "Takoradi", "Tamale"], answer: "Accra" },
-    { q: "The Tetteh Quarshie Interchange is a major landmark in...", options: ["Kumasi", "Takoradi", "Accra", "Cape Coast"], answer: "Accra" },
-    { q: "The symbol of the National Democratic Congress (NDC) party is an...", options: ["Elephant", "Umbrella", "Coconut", "Eagle"], answer: "Umbrella" },
-    { q: "What is the primary language spoken in the Volta Region?", options: ["Twi", "Ga", "Ewe", "Hausa"], answer: "Ewe" },
-    { q: "The 'Clean-Up Day' in Ghana is observed on the first...", options: ["Monday of the month", "Friday of the month", "Saturday of the month", "Sunday of the month"], answer: "Saturday of the month" },
-    { q: "Which of these is a famous 'kente' weaving town?", options: ["Adanwomase", "Bolgatanga", "Kintampo", "Ho"], answer: "Adanwomase" },
-    { q: "The symbol of the New Patriotic Party (NPP) is an...", options: ["Elephant", "Umbrella", "Star", "Dove"], answer: "Elephant" },
-    { q: "The Jubilee House, the seat of the presidency, was formerly known as...", options: ["The Castle", "Flagstaff House", "Peduase Lodge", "Government House"], answer: "Flagstaff House" },
-    { q: "Which Ghanaian actor has featured in major Hollywood films like 'Beasts of No Nation'?", options: ["John Dumelo", "Majid Michel", "Abraham Attah", "Van Vicker"], answer: "Abraham Attah" },
-    { q: "The Aburi Botanical Gardens are located in which region?", options: ["Greater Accra", "Eastern", "Central", "Volta"], answer: "Eastern" },
-    { q: "What is the capital of the North East Region?", options: ["Walewale", "Nalerigu", "Gambaga", "Yagaba"], answer: "Nalerigu" },
-    { q: "The first competitive football match for the Black Stars was against which country?", options: ["Togo", "Nigeria", "Ivory Coast", "Benin"], answer: "Nigeria" },
-    { q: "What does NADMO stand for?", options: ["National Disaster Management Organization", "National Development & Mobilization Office", "New Agency for Domestic Mobilization", "National Dairy Management Organization"], answer: "National Disaster Management Organization" },
-    { q: "The Larabanga Mosque, one of West Africa's oldest, is in which region?", options: ["Northern", "Savannah", "Upper West", "North East"], answer: "Savannah" },
-    { q: "Which of the following is a Ghanaian Highlife musician legend?", options: ["Sarkodie", "Daddy Lumba", "Shatta Wale", "Stonebwoy"], answer: "Daddy Lumba" },
-    { q: "The Greenwich Meridian passes through which Ghanaian industrial city?", options: ["Accra", "Tema", "Takoradi", "Kumasi"], answer: "Tema" },
-    { q: "Which body regulates universities in Ghana?", options: ["GES", "WAEC", "GTEC", "NMC"], answer: "GTEC" },
-    { q: "The 'Operation Feed Yourself' program was initiated under which leader?", options: ["Kwame Nkrumah", "I.K. Acheampong", "J.J. Rawlings", "John Kufuor"], answer: "I.K. Acheampong" },
-    { q: "Which of the following is a major river in the Ashanti Region?", options: ["Volta", "Pra", "Oti", "Densu"], answer: "Pra" },
-    { q: "Ghana's Fourth Republic began in which year?", options: ["1960", "1979", "1993", "2001"], answer: "1993" },
-    { q: "Which region is famous for its basket weaving industry, particularly in Bolgatanga?", options: ["Upper West", "North East", "Savannah", "Upper East"], answer: "Upper East" },
-    { q: "The name 'Ghana' was inspired by which ancient empire?", options: ["Mali Empire", "Songhai Empire", "Ancient Ghana Empire", "Ashanti Empire"], answer: "Ancient Ghana Empire" },
-    { q: "What is the capital of the Oti Region?", options: ["Kete Krachi", "Jasikan", "Dambai", "Nkwanta"], answer: "Dambai" },
-    { q: "Which Ghanaian invented the Veronica Bucket?", options: ["Esther Ocloo", "Veronica Bekoe", "Theodosia Okoh", "Letitia Obeng"], answer: "Veronica Bekoe" },
-    { q: "The Ghana Broadcasting Corporation (GBC) is...", options: ["Privately owned", "State-owned", "Foreign-owned", "Community-owned"], answer: "State-owned" },
-    { q: "The Akwamu kingdom was powerful along which river?", options: ["Pra River", "Ankobra River", "Volta River", "Tano River"], answer: "Volta River" },
-    { q: "The National Cathedral of Ghana is being built in which city?", options: ["Kumasi", "Cape Coast", "Accra", "Koforidua"], answer: "Accra" },
-    { q: "In which year did Ghana host the Africa Cup of Nations (AFCON) for the last time?", options: ["2000", "2008", "2012", "2017"], answer: "2008" },
-    { q: "The 'cedi' denomination replaced what currency?", options: ["The Ghanaian Pound", "The West African Shilling", "The British Pound", "The Gold Coast Akcee"], answer: "The Ghanaian Pound" },
-    { q: "The Nzema people are predominantly found in which region?", options: ["Central", "Western", "Volta", "Greater Accra"], answer: "Western" },
-    { q: "What is the role of the 'Okyeame' in Akan chieftaincy?", options: ["Chief's guard", "Linguist/Spokesperson", "Treasurer", "Drummer"], answer: "Linguist/Spokesperson" },
-    { q: "The Ghana Institute of Management and Public Administration is known as?", options: ["GIMPA", "UPSA", "GIJ", "LEGON"], answer: "GIMPA" },
-    { q: "Which Ghanaian president passed away while in office?", options: ["Kwame Nkrumah", "John Atta Mills", "Hilla Limann", "John Kufuor"], answer: "John Atta Mills" },
-    { q: "The Adae Kese festival is a major festival for which ethnic group?", options: ["Ewe", "Asante", "Ga", "Frafra"], answer: "Asante" },
-    { q: "Which of these is a major export commodity for Ghana besides cocoa and gold?", options: ["Crude Oil", "Textiles", "Coffee", "Diamonds"], answer: "Crude Oil" },
-    { q: "The University of Mines and Technology is located in which town?", options: ["Obuasi", "Tarkwa", "Prestea", "Konongo"], answer: "Tarkwa" },
-    { q: "The Bank of Ghana is responsible for...", options: ["Commercial Banking", "Monetary Policy", "Collecting Taxes", "National Budget"], answer: "Monetary Policy" },
-    { q: "What is the full meaning of KNUST?", options: ["Kwame Nkrumah University of Science and Technology", "Koforidua Nkrumah University of Science and Technology", "Kumasi National University of Science and Technology", "Kwame Nkrumah University of Scientific Training"], answer: "Kwame Nkrumah University of Science and Technology" },
-    { q: "Which region was the Brong-Ahafo region split into?", options: ["Bono, Bono East, Ahafo", "Savannah, North East", "Western North, Oti", "Bono, Ahafo"], answer: "Bono, Bono East, Ahafo" },
-    { q: "The final of the 1978 AFCON, won by Ghana, was played in which city?", options: ["Kumasi", "Accra", "Takoradi", "Cape Coast"], answer: "Accra" },
-    { q: "The traditional cloth 'Batakari' or 'fugu' is mostly associated with which part of Ghana?", options: ["Southern Ghana", "Northern Ghana", "Volta Region", "Western Region"], answer: "Northern Ghana" },
-    { q: "The 'Preventive Detention Act' was a controversial law passed under which leader?", options: ["Kwame Nkrumah", "K.A. Busia", "J.J. Rawlings", "I.K. Acheampong"], answer: "Kwame Nkrumah" },
-    { q: "The Judicial Service of Ghana is headed by the...", options: ["President", "Attorney General", "Chief Justice", "Speaker of Parliament"], answer: "Chief Justice" },
-    { q: "Which town is famous for its slave river, 'Donkor Nsuo'?", options: ["Elmina", "Cape Coast", "Assin Manso", "Salaga"], answer: "Assin Manso" },
-    { q: "The Ghana Institute of Journalism (GIJ) is located in?", options: ["Kumasi", "Accra", "Cape Coast", "Sunyani"], answer: "Accra" },
-    { q: "What does SSNIT stand for?", options: ["Social Security and National Insurance Trust", "State Security and National Information Trust", "Social Service and National Investment Trust", "Senior Staff National Insurance Trust"], answer: "Social Security and National Insurance Trust" },
-    { q: "The Ankobra and Tano rivers both empty into the...", options: ["Volta Lake", "Gulf of Guinea", "Pra River", "Keta Lagoon"], answer: "Gulf of Guinea" },
-    { q: "Which Ghanaian football club is known as the 'Phobians'?", options: ["Asante Kotoko", "Ashanti Gold", "Hearts of Oak", "Liberty Professionals"], answer: "Hearts of Oak" },
-    { q: "The Council for Scientific and Industrial Research (CSIR) is a...", options: ["Private company", "Government agency", "University department", "Non-profit organization"], answer: "Government agency" },
-    { q: "Who was the first Speaker of Parliament in Ghana's Fourth Republic?", options: ["Peter Ala Adjetey", "Justice D.F. Annan", "Ebenezer Sekyi-Hughes", "Joyce Bamford-Addo"], answer: "Justice D.F. Annan" },
-    { q: "The University of Cape Coast (UCC) is well known for training which professionals?", options: ["Doctors", "Lawyers", "Engineers", "Teachers"], answer: "Teachers" },
-    { q: "The popular 'fantasy coffins' are a unique craft from which Ghanaian community?", options: ["The people of Teshie", "The people of Krobo", "The people of Bolgatanga", "The people of Aburi"], answer: "The people of Teshie" },
-    { q: "The Sagrenti War of 1874 was fought between the Asante and the...", options: ["Fante", "Dutch", "Danish", "British"], answer: "British" },
-    { q: "What is the capital of the Greater Accra Region?", options: ["Tema", "Accra", "Legon", "Madina"], answer: "Accra" },
-    { q: "The motto of Ghana is...", options: ["Unity and Faith, Peace and Progress", "Freedom and Justice", "One Nation, One Destiny", "Peace, Unity, Liberty"], answer: "Freedom and Justice" },
-    { q: "Which Ghanaian city has the nickname 'Kumerica'?", options: ["Accra", "Takoradi", "Kumasi", "Tamale"], answer: "Kumasi" },
-    { q: "The National Communications Authority (NCA) regulates which industry?", options: ["Banking", "Mining", "Telecommunications", "Education"], answer: "Telecommunications" },
-    { q: "The Weija Dam provides water for which major city?", options: ["Kumasi", "Takoradi", "Accra", "Cape Coast"], answer: "Accra" },
-    { q: "Which of these is a traditional Akan name for a male born on Sunday?", options: ["Kofi", "Kwame", "Kwadwo", "Kwasi"], answer: "Kwasi" },
-    { q: "The largest opposition party in Ghana's parliament as of 2024 is the...", options: ["NPP", "CPP", "NDC", "PNC"], answer: "NDC" },
-    { q: "The Food and Drugs Authority (FDA) in Ghana regulates...", options: ["Farming and fishing", "Food, drugs, and cosmetics", "Restaurants and hotels", "Imports and exports"], answer: "Food, drugs, and cosmetics" },
-    { q: "The 'Dipo' festival is a puberty rite associated with which people?", options: ["The Ga-Adangbe", "The Krobo", "The Ewe", "The Fante"], answer: "The Krobo" },
-    { q: "Asante Kotoko SC, a major football club, is based in which city?", options: ["Accra", "Obuasi", "Kumasi", "Tarkwa"], answer: "Kumasi" },
-    { q: "The title for the king of the Ewe people is...", options: ["Asantehene", "Ga Mantse", "Togbe", "Yaa Naa"], answer: "Togbe" },
-    { q: "Which vice president of Ghana later became president?", options: ["Kow Nkensen Arkaah", "John Atta Mills", "Aliu Mahama", "John Dramani Mahama"], answer: "John Dramani Mahama" },
-    { q: "Ghana's legal system is primarily based on...", options: ["French Civil Law", "Islamic Sharia Law", "English Common Law", "Chinese Law"], answer: "English Common Law" },
-    { q: "The popular Azonto dance originated from which country?", options: ["Nigeria", "Ghana", "South Africa", "Togo"], answer: "Ghana" }
+    { q: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], answer: "Paris" },
+    { q: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], answer: "Mars" },
+    { q: "Who wrote 'Romeo and Juliet'?", options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"], answer: "William Shakespeare" },
+    { q: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], answer: "Pacific Ocean" },
+    { q: "In which year did the Titanic sink?", options: ["1905", "1912", "1918", "1923"], answer: "1912" },
+    { q: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Go", "Gd"], answer: "Au" },
+    { q: "Which country is home to the kangaroos?", options: ["South Africa", "India", "Australia", "Brazil"], answer: "Australia" },
+    { q: "What is the tallest mountain in the world?", options: ["K2", "Mount Everest", "Kangchenjunga", "Lhotse"], answer: "Mount Everest" },
+    { q: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], answer: "Leonardo da Vinci" },
+    { q: "What is the currency of Japan?", options: ["Yuan", "Won", "Yen", "Baht"], answer: "Yen" },
+    { q: "Which city hosted the 2012 Summer Olympics?", options: ["Beijing", "London", "Rio de Janeiro", "Tokyo"], answer: "London" },
+    { q: "What is the main ingredient in guacamole?", options: ["Tomato", "Avocado", "Onion", "Pepper"], answer: "Avocado" },
+    { q: "Who is the author of the Harry Potter series?", options: ["J.R.R. Tolkien", "George R.R. Martin", "J.K. Rowling", "Suzanne Collins"], answer: "J.K. Rowling" },
+    { q: "What is the capital of the United States?", options: ["New York City", "Washington, D.C.", "Los Angeles", "Chicago"], answer: "Washington, D.C." },
+    { q: "Which instrument has 88 keys?", options: ["Guitar", "Violin", "Piano", "Trumpet"], answer: "Piano" },
+    { q: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Quartz"], answer: "Diamond" },
+    { q: "Which country is known as the Land of the Rising Sun?", options: ["China", "South Korea", "Japan", "Thailand"], answer: "Japan" },
+    { q: "What is the name of the galaxy our solar system is in?", options: ["Andromeda", "Triangulum", "Whirlpool", "Milky Way"], answer: "Milky Way" },
+    { q: "How many continents are there?", options: ["5", "6", "7", "8"], answer: "7" },
+    { q: "Who was the first man to walk on the moon?", options: ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Michael Collins"], answer: "Neil Armstrong" },
+    { q: "What is the capital of Spain?", options: ["Barcelona", "Lisbon", "Madrid", "Seville"], answer: "Madrid" },
+    { q: "Which artist is known for co-founding the Cubist movement?", options: ["Salvador Dalí", "Pablo Picasso", "Henri Matisse", "Frida Kahlo"], answer: "Pablo Picasso" },
+    { q: "What is the largest desert in the world?", options: ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctic Polar Desert"], answer: "Antarctic Polar Desert" },
+    { q: "What is the longest river in the world?", options: ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"], answer: "Nile River" },
+    { q: "Which country gifted the Statue of Liberty to the USA?", options: ["United Kingdom", "France", "Spain", "Italy"], answer: "France" },
+    { q: "What is the main language spoken in Brazil?", options: ["Spanish", "Portuguese", "English", "French"], answer: "Portuguese" },
+    { q: "Who developed the theory of relativity?", options: ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Nikola Tesla"], answer: "Albert Einstein" },
+    { q: "Which ocean is the Bermuda Triangle located in?", options: ["Pacific Ocean", "Indian Ocean", "Atlantic Ocean", "Arctic Ocean"], answer: "Atlantic Ocean" },
+    { q: "What is the capital of Canada?", options: ["Toronto", "Vancouver", "Montreal", "Ottawa"], answer: "Ottawa" },
+    { q: "In which movie would you find the character 'Darth Vader'?", options: ["Star Trek", "The Lord of the Rings", "Harry Potter", "Star Wars"], answer: "Star Wars" },
+    { q: "What is the freezing point of water in Celsius?", options: ["0°C", "32°C", "100°C", "-10°C"], answer: "0°C" },
+    { q: "Which country is famous for its tulips and windmills?", options: ["Belgium", "Germany", "Netherlands", "Denmark"], answer: "Netherlands" },
+    { q: "Who was the first President of the United States?", options: ["Abraham Lincoln", "Thomas Jefferson", "George Washington", "John Adams"], answer: "George Washington" },
+    { q: "What is the world's most populous country?", options: ["India", "United States", "Indonesia", "China"], answer: "China" },
+    { q: "Which is the smallest planet in our solar system?", options: ["Venus", "Mars", "Mercury", "Earth"], answer: "Mercury" },
+    { q: "What is the capital of Italy?", options: ["Venice", "Milan", "Rome", "Naples"], answer: "Rome" },
+    { q: "What sport is played at Wimbledon?", options: ["Golf", "Tennis", "Cricket", "Soccer"], answer: "Tennis" },
+    { q: "Who wrote 'To Kill a Mockingbird'?", options: ["Harper Lee", "F. Scott Fitzgerald", "Ernest Hemingway", "John Steinbeck"], answer: "Harper Lee" },
+    { q: "What is the Great Wall of China primarily made of?", options: ["Wood", "Stone and brick", "Concrete", "Ice"], answer: "Stone and brick" },
+    { q: "Which band was famously known as 'The Fab Four'?", options: ["The Rolling Stones", "The Beatles", "Queen", "Led Zeppelin"], answer: "The Beatles" },
+    { q: "What is the capital of Germany?", options: ["Munich", "Hamburg", "Berlin", "Frankfurt"], answer: "Berlin" },
+    { q: "How many players are on a standard soccer team on the field?", options: ["9", "10", "11", "12"], answer: "11" },
+    { q: "What is H2O the chemical formula for?", options: ["Salt", "Sugar", "Water", "Oxygen"], answer: "Water" },
+    { q: "The Colosseum is a famous landmark in which city?", options: ["Athens", "Istanbul", "Rome", "Cairo"], answer: "Rome" },
+    { q: "Which country is shaped like a boot?", options: ["Greece", "Italy", "Spain", "Portugal"], answer: "Italy" },
+    { q: "What is the main character's name in the 'Indiana Jones' film series?", options: ["Harrison Ford", "Dr. Jones", "Indiana Smith", "Indiana Jones"], answer: "Indiana Jones" },
+    { q: "Which element is most abundant in the Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], answer: "Nitrogen" },
+    { q: "What is the largest animal on Earth?", options: ["Elephant", "Blue Whale", "Giraffe", "Great White Shark"], answer: "Blue Whale" },
+    { q: "In which country would you find the pyramids of Giza?", options: ["Sudan", "Mexico", "Egypt", "Peru"], answer: "Egypt" },
+    { q: "Who painted the ceiling of the Sistine Chapel?", options: ["Raphael", "Donatello", "Michelangelo", "Leonardo da Vinci"], answer: "Michelangelo" },
+    { q: "What is the capital of Russia?", options: ["Saint Petersburg", "Moscow", "Kazan", "Novosibirsk"], answer: "Moscow" },
+    { q: "The FIFA World Cup is held every how many years?", options: ["2 years", "3 years", "4 years", "5 years"], answer: "4 years" },
+    { q: "What is a group of lions called?", options: ["A pack", "A herd", "A pride", "A flock"], answer: "A pride" },
+    { q: "Who is credited with inventing the light bulb?", options: ["Nikola Tesla", "Alexander Graham Bell", "Thomas Edison", "Benjamin Franklin"], answer: "Thomas Edison" },
+    { q: "Which city is known as 'The Big Apple'?", options: ["Los Angeles", "Chicago", "New York City", "Boston"], answer: "New York City" },
+    { q: "What is the name of the monster in Mary Shelley's famous novel?", options: ["Dracula", "Frankenstein's monster", "The Mummy", "The Wolfman"], answer: "Frankenstein's monster" },
+    { q: "Which continent is the least populated?", options: ["Australia", "South America", "Africa", "Antarctica"], answer: "Antarctica" },
+    { q: "What is the main currency of the European Union?", options: ["Pound", "Dollar", "Euro", "Franc"], answer: "Euro" },
+    { q: "Who directed the movie 'Jurassic Park'?", options: ["James Cameron", "George Lucas", "Steven Spielberg", "Christopher Nolan"], answer: "Steven Spielberg" },
+    { q: "What is the largest bone in the human body?", options: ["Femur", "Humerus", "Tibia", "Skull"], answer: "Femur" },
+    { q: "Which country is both in Europe and Asia?", options: ["Turkey", "Egypt", "Greece", "Georgia"], answer: "Turkey" },
+    { q: "In which sport would you perform a 'slam dunk'?", options: ["Volleyball", "Basketball", "American Football", "Baseball"], answer: "Basketball" },
+    { q: "What is the capital of the United Kingdom?", options: ["Manchester", "Birmingham", "Edinburgh", "London"], answer: "London" },
+    { q: "The 'Mona Lisa' is displayed in which museum?", options: ["The Met", "The British Museum", "The Louvre", "The Prado"], answer: "The Louvre" },
+    { q: "Which of these is a primary color?", options: ["Green", "Orange", "Blue", "Purple"], answer: "Blue" },
+    { q: "What is the name of the famous clock tower in London?", options: ["Big Ben", "London Eye", "The Shard", "Tower Bridge"], answer: "Big Ben" },
+    { q: "Who wrote 'The Great Gatsby'?", options: ["F. Scott Fitzgerald", "Ernest Hemingway", "William Faulkner", "Mark Twain"], answer: "F. Scott Fitzgerald" },
+    { q: "What type of fish is Nemo in the movie 'Finding Nemo'?", options: ["Goldfish", "Clownfish", "Shark", "Tuna"], answer: "Clownfish" },
+    { q: "What is the capital of Australia?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], answer: "Canberra" },
+    { q: "How many rings are on the Olympic flag?", options: ["4", "5", "6", "7"], answer: "5" },
+    { q: "What is the process by which plants make their food?", options: ["Respiration", "Photosynthesis", "Transpiration", "Pollination"], answer: "Photosynthesis" },
+    { q: "Who was the legendary king of Camelot?", options: ["King Arthur", "King Richard", "King George", "King Henry"], answer: "King Arthur" },
+    { q: "Which country is famous for its fjords?", options: ["Sweden", "Finland", "Norway", "Iceland"], answer: "Norway" },
+    { q: "In which city is the 'Hollywood' sign located?", options: ["San Francisco", "Las Vegas", "Los Angeles", "San Diego"], answer: "Los Angeles" },
+    { q: "What is the fear of spiders called?", options: ["Arachnophobia", "Claustrophobia", "Acrophobia", "Agoraphobia"], answer: "Arachnophobia" },
+    { q: "What is the capital of China?", options: ["Shanghai", "Hong Kong", "Beijing", "Tianjin"], answer: "Beijing" },
+    { q: "Which composer was deaf for the last part of his life?", options: ["Mozart", "Bach", "Beethoven", "Chopin"], answer: "Beethoven" },
+    { q: "What does 'www' stand for in a website address?", options: ["World Wide Web", "World Web Wide", "Web World Wide", "Wide World Web"], answer: "World Wide Web" },
+    { q: "What is the largest country by land area?", options: ["Canada", "China", "United States", "Russia"], answer: "Russia" },
+    { q: "What are the three primary colors in art?", options: ["Red, Yellow, Green", "Red, Yellow, Blue", "Red, Green, Blue", "Yellow, Green, Blue"], answer: "Red, Yellow, Blue" },
+    { q: "The Great Barrier Reef is located off the coast of which country?", options: ["Brazil", "Mexico", "Australia", "Indonesia"], answer: "Australia" },
+    { q: "Which is the only mammal capable of sustained flight?", options: ["Flying squirrel", "Bat", "Ostrich", "Penguin"], answer: "Bat" },
+    { q: "Who is the Greek god of the sea?", options: ["Zeus", "Hades", "Poseidon", "Apollo"], answer: "Poseidon" },
+    { q: "What is the capital of India?", options: ["Mumbai", "New Delhi", "Kolkata", "Chennai"], answer: "New Delhi" },
+    { q: "What is the most consumed beverage in the world after water?", options: ["Coffee", "Tea", "Beer", "Orange Juice"], answer: "Tea" },
+    { q: "Who wrote '1984'?", options: ["George Orwell", "Aldous Huxley", "Ray Bradbury", "J.D. Salinger"], answer: "George Orwell" },
+    { q: "Which element's chemical symbol is 'Fe'?", options: ["Fluorine", "Iron", "Gold", "Silver"], answer: "Iron" },
+    { q: "What is the capital of Egypt?", options: ["Alexandria", "Cairo", "Giza", "Luxor"], answer: "Cairo" },
+    { q: "Which company created the iPhone?", options: ["Samsung", "Google", "Apple", "Microsoft"], answer: "Apple" },
+    { q: "Which film won the first Academy Award for Best Picture?", options: ["The Jazz Singer", "Wings", "Metropolis", "Sunrise"], answer: "Wings" },
+    { q: "What is the highest-grossing film of all time (unadjusted for inflation)?", options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: The Force Awakens"], answer: "Avatar" },
+    { q: "In Greek mythology, who was the king of the gods?", options: ["Hades", "Poseidon", "Zeus", "Apollo"], answer: "Zeus" },
+    { q: "Which planet is closest to the sun?", options: ["Venus", "Mercury", "Earth", "Mars"], answer: "Mercury" },
+    { q: "What is the official language of Argentina?", options: ["Portuguese", "Spanish", "Italian", "English"], answer: "Spanish" },
+    { q: "Who is known as the 'King of Pop'?", options: ["Elvis Presley", "Michael Jackson", "Freddie Mercury", "Prince"], answer: "Michael Jackson" },
+    { q: "What is the name of the sea between Europe and Africa?", options: ["Black Sea", "Red Sea", "Mediterranean Sea", "Adriatic Sea"], answer: "Mediterranean Sea" },
+    { q: "Which animal is the national symbol of the USA?", options: ["Bald Eagle", "Grizzly Bear", "American Bison", "Gray Wolf"], answer: "Bald Eagle" },
+    { q: "What is the term for a word that is spelled the same forwards and backward?", options: ["Palindrome", "Antonym", "Synonym", "Homophone"], answer: "Palindrome" },
+    { q: "Which country is famous for its ancient samurai warriors?", options: ["China", "Korea", "Japan", "Vietnam"], answer: "Japan" },
+    { q: "Who was the first female Prime Minister of the United Kingdom?", options: ["Theresa May", "Margaret Thatcher", "Angela Merkel", "Indira Gandhi"], answer: "Margaret Thatcher" },
+    { q: "What is the smallest country in the world?", options: ["Monaco", "Nauru", "Vatican City", "San Marino"], answer: "Vatican City" },
+    { q: "Which ocean does not border the continent of Africa?", options: ["Atlantic", "Indian", "Southern", "Pacific"], answer: "Pacific" },
+    { q: "What does a Geiger counter measure?", options: ["Temperature", "Radiation", "Air pressure", "Light intensity"], answer: "Radiation" },
+    { q: "Machu Picchu is a famous ancient citadel in which country?", options: ["Brazil", "Colombia", "Peru", "Chile"], answer: "Peru" },
+    { q: "Which band released the album 'The Dark Side of the Moon'?", options: ["The Who", "Pink Floyd", "Led Zeppelin", "The Rolling Stones"], answer: "Pink Floyd" },
+    { q: "What is the largest island in the world?", options: ["Greenland", "New Guinea", "Borneo", "Madagascar"], answer: "Greenland" },
+    { q: "Who painted 'The Starry Night'?", options: ["Claude Monet", "Vincent van Gogh", "Edvard Munch", "Paul Cézanne"], answer: "Vincent van Gogh" },
+    { q: "What is the main ingredient in the Japanese dish 'sushi'?", options: ["Raw fish", "Vinegared rice", "Seaweed", "Wasabi"], answer: "Vinegared rice" },
+    { q: "Which of these is not one of the Seven Wonders of the Ancient World?", options: ["Great Pyramid of Giza", "Eiffel Tower", "Hanging Gardens of Babylon", "Lighthouse of Alexandria"], answer: "Eiffel Tower" },
+    { q: "How many strings does a standard violin have?", options: ["4", "5", "6", "7"], answer: "4" },
+    { q: "What is the fear of heights called?", options: ["Claustrophobia", "Acrophobia", "Agoraphobia", "Mysophobia"], answer: "Acrophobia" },
+    { q: "Which country's flag is known as the 'Stars and Stripes'?", options: ["United Kingdom", "Canada", "United States", "Australia"], answer: "United States" },
+    { q: "What is the name of the currency used in Switzerland?", options: ["Euro", "Swiss Franc", "Krone", "Złoty"], answer: "Swiss Franc" },
+    { q: "Who invented the telephone?", options: ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Guglielmo Marconi"], answer: "Alexander Graham Bell" },
+    { q: "Which author created the character Sherlock Holmes?", options: ["Agatha Christie", "Arthur Conan Doyle", "Edgar Allan Poe", "Jules Verne"], answer: "Arthur Conan Doyle" },
+    { q: "Which of these cities is in the Southern Hemisphere?", options: ["Tokyo", "Sydney", "London", "Moscow"], answer: "Sydney" },
+    { q: "What is the main gas that makes up the sun?", options: ["Oxygen", "Nitrogen", "Hydrogen", "Helium"], answer: "Hydrogen" },
+    { q: "In the game of chess, which piece can only move diagonally?", options: ["Rook", "Knight", "Bishop", "Pawn"], answer: "Bishop" },
+    { q: "What is the most widely spoken language in the world by number of native speakers?", options: ["English", "Mandarin Chinese", "Spanish", "Hindi"], answer: "Mandarin Chinese" },
+    { q: "The Amazon rainforest is primarily located in which continent?", options: ["Asia", "Africa", "South America", "North America"], answer: "South America" },
+    { q: "What is the capital of South Korea?", options: ["Pyongyang", "Tokyo", "Seoul", "Beijing"], answer: "Seoul" },
+    { q: "Who was the 'Goddess of Love' in ancient Greek mythology?", options: ["Hera", "Artemis", "Aphrodite", "Athena"], answer: "Aphrodite" },
+    { q: "What type of animal is a 'Komodo dragon'?", options: ["Bird", "Lizard", "Snake", "Fish"], answer: "Lizard" },
+    { q: "Which famous physicist is known for the equation E=mc²?", options: ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Stephen Hawking"], answer: "Albert Einstein" },
+    { q: "What is the capital of Mexico?", options: ["Guadalajara", "Mexico City", "Cancún", "Tijuana"], answer: "Mexico City" },
+    { q: "Who directed the 'Lord of the Rings' trilogy?", options: ["George Lucas", "James Cameron", "Peter Jackson", "Ridley Scott"], answer: "Peter Jackson" },
+    { q: "What is the world's longest mountain range?", options: ["The Himalayas", "The Rockies", "The Alps", "The Andes"], answer: "The Andes" },
+    { q: "Which country is the largest producer of coffee?", options: ["Colombia", "Vietnam", "Brazil", "Ethiopia"], answer: "Brazil" },
+    { q: "What does a 'sommelier' specialize in?", options: ["Cheese", "Wine", "Coffee", "Bread"], answer: "Wine" },
+    { q: "What is the name of the British Royal Family's residence in London?", options: ["Windsor Castle", "Kensington Palace", "Buckingham Palace", "Hampton Court Palace"], answer: "Buckingham Palace" },
+    { q: "Which is the fastest land animal?", options: ["Lion", "Pronghorn", "Cheetah", "Wildebeest"], answer: "Cheetah" },
+    { q: "Who wrote 'The Odyssey'?", options: ["Socrates", "Plato", "Homer", "Aristotle"], answer: "Homer" },
+    { q: "What is the currency of the United Kingdom?", options: ["Euro", "Dollar", "Pound Sterling", "Franc"], answer: "Pound Sterling" },
+    { q: "Which of these is a famous monument in India?", options: ["Angkor Wat", "Petra", "The Colosseum", "Taj Mahal"], answer: "Taj Mahal" },
+    { q: "What is the main component of Earth's core?", options: ["Lead", "Copper", "Iron", "Nickel"], answer: "Iron" },
+    { q: "In which sport do you use a 'shuttlecock'?", options: ["Tennis", "Table Tennis", "Squash", "Badminton"], answer: "Badminton" },
+    { q: "What is the capital of Argentina?", options: ["Santiago", "Lima", "Buenos Aires", "Bogotá"], answer: "Buenos Aires" },
+    { q: "Which artist cut off a part of his own ear?", options: ["Pablo Picasso", "Salvador Dalí", "Vincent van Gogh", "Claude Monet"], answer: "Vincent van Gogh" },
+    { q: "How many bones are in the adult human body?", options: ["206", "212", "230", "250"], answer: "206" },
+    { q: "Which country is known for its maple syrup?", options: ["United States", "Russia", "Canada", "Finland"], answer: "Canada" },
+    { q: "What is the main ingredient of 'hummus'?", options: ["Lentils", "Chickpeas", "Black beans", "Soybeans"], answer: "Chickpeas" },
+    { q: "Who was the Roman god of war?", options: ["Jupiter", "Mars", "Neptune", "Apollo"], answer: "Mars" },
+    { q: "The 'Renaissance' was a period of cultural rebirth that began in which country?", options: ["France", "Spain", "Italy", "England"], answer: "Italy" },
+    { q: "What does the 'C' in 'CPU' stand for?", options: ["Central", "Computer", "Core", "Circuit"], answer: "Central" },
+    { q: "Which desert is the largest hot desert in the world?", options: ["Gobi", "Kalahari", "Sahara", "Arabian"], answer: "Sahara" },
+    { q: "What is the name of the river that flows through London?", options: ["River Severn", "River Thames", "River Tyne", "River Mersey"], answer: "River Thames" },
+    { q: "In what year did World War II end?", options: ["1943", "1944", "1945", "1946"], answer: "1945" },
+    { q: "Which fictional city is the home of Batman?", options: ["Metropolis", "Gotham City", "Star City", "Central City"], answer: "Gotham City" },
+    { q: "What is the most spoken language in South America?", options: ["Spanish", "Portuguese", "English", "French"], answer: "Spanish" },
+    { q: "What is the capital of Greece?", options: ["Sparta", "Thessaloniki", "Athens", "Patras"], answer: "Athens" },
+    { q: "What is the name of the painting that depicts a melting clock?", options: ["The Starry Night", "Guernica", "The Persistence of Memory", "The Scream"], answer: "The Persistence of Memory" },
+    { q: "What is a 'tsunami'?", options: ["A volcanic eruption", "A large ocean wave", "A severe thunderstorm", "A rotating column of air"], answer: "A large ocean wave" },
+    { q: "Which is the largest of the Great Lakes in North America?", options: ["Lake Michigan", "Lake Huron", "Lake Superior", "Lake Erie"], answer: "Lake Superior" },
+    { q: "What is the national sport of Japan?", options: ["Judo", "Karate", "Sumo Wrestling", "Baseball"], answer: "Sumo Wrestling" },
+    { q: "Who was the 'Queen of Soul'?", options: ["Whitney Houston", "Aretha Franklin", "Diana Ross", "Tina Turner"], answer: "Aretha Franklin" },
+    { q: "What is the capital of Thailand?", options: ["Hanoi", "Phnom Penh", "Bangkok", "Kuala Lumpur"], answer: "Bangkok" },
+    { q: "Which of these is not a Scandinavian country?", options: ["Denmark", "Finland", "Sweden", "Norway"], answer: "Finland" },
+    { q: "What is the chemical symbol for silver?", options: ["Si", "Sv", "Ag", "Au"], answer: "Ag" },
+    { q: "What is the name of the long-running British sci-fi show about a Time Lord?", options: ["Star Trek", "Red Dwarf", "Doctor Who", "Black Mirror"], answer: "Doctor Who" },
+    { q: "The Great Victoria Desert is located in which country?", options: ["United States", "Australia", "Namibia", "Chile"], answer: "Australia" },
+    { q: "Which country's cuisine is known for 'kimchi'?", options: ["Japan", "China", "Vietnam", "Korea"], answer: "Korea" },
+    { q: "What is the name of the fictional school in the Harry Potter series?", options: ["Beauxbatons", "Durmstrang", "Hogwarts", "Ilvermorny"], answer: "Hogwarts" },
+    { q: "Which two countries share the longest international border?", options: ["USA and Canada", "Russia and China", "Argentina and Chile", "Kazakhstan and Russia"], answer: "USA and Canada" },
+    { q: "Who is the lead singer of the band Queen?", options: ["Roger Taylor", "Brian May", "Freddie Mercury", "John Deacon"], answer: "Freddie Mercury" },
+    { q: "What is the world's most venomous fish?", options: ["Pufferfish", "Stonefish", "Lionfish", "Box Jellyfish"], answer: "Stonefish" },
+    { q: "In which year was the first iPhone released?", options: ["2005", "2006", "2007", "2008"], answer: "2007" },
+    { q: "Mount Fuji is the highest mountain in which country?", options: ["Nepal", "China", "Japan", "South Korea"], answer: "Japan" },
+    { q: "What is the name of the currency used in Russia?", options: ["Ruble", "Koruna", "Forint", "Złoty"], answer: "Ruble" },
+    { q: "The ancient city of Petra is located in which modern-day country?", options: ["Syria", "Lebanon", "Israel", "Jordan"], answer: "Jordan" },
+    { q: "Which of the following is a renewable source of energy?", options: ["Natural Gas", "Coal", "Solar Power", "Petroleum"], answer: "Solar Power" },
+    { q: "What is the term for a group of wolves?", options: ["A pride", "A herd", "A pack", "A school"], answer: "A pack" },
+    { q: "What is the largest organ in the human body?", options: ["Liver", "Brain", "Skin", "Heart"], answer: "Skin" },
+    { q: "Who wrote 'The Lord of the Rings'?", options: ["C.S. Lewis", "J.K. Rowling", "George R.R. Martin", "J.R.R. Tolkien"], answer: "J.R.R. Tolkien" },
+    { q: "Which of these is not a part of the United Kingdom?", options: ["England", "Scotland", "Wales", "Republic of Ireland"], answer: "Republic of Ireland" },
+    { q: "In what sport would you find a 'championship ring'?", options: ["Soccer (Football)", "American Football", "Cricket", "Rugby"], answer: "American Football" },
+    { q: "What is the capital of Turkey?", options: ["Istanbul", "Ankara", "Izmir", "Bursa"], answer: "Ankara" },
+    { q: "The 'Oktoberfest' festival is traditionally held in which German city?", options: ["Berlin", "Hamburg", "Munich", "Frankfurt"], answer: "Munich" },
+    { q: "What is the main language of the Quran?", options: ["Persian", "Urdu", "Arabic", "Hebrew"], answer: "Arabic" },
+    { q: "Which car manufacturer produces the '911' model?", options: ["Ferrari", "Lamborghini", "Porsche", "BMW"], answer: "Porsche" },
+    { q: "What is the study of earthquakes called?", options: ["Meteorology", "Seismology", "Volcanology", "Geology"], answer: "Seismology" },
+    { q: "The 'Tour de France' is a famous competition in which sport?", options: ["Running", "Swimming", "Cycling", "Skiing"], answer: "Cycling" },
+    { q: "Which country is the world's largest island nation?", options: ["Japan", "Philippines", "Indonesia", "Madagascar"], answer: "Indonesia" },
+    { q: "What is the name of the dog in 'The Adventures of Tintin'?", options: ["Milo", "Snowy", "Buddy", "Rocky"], answer: "Snowy" },
+    { q: "Which of the five senses is most closely linked to memory?", options: ["Sight", "Hearing", "Smell", "Touch"], answer: "Smell" },
+    { q: "The Acropolis is a famous ancient citadel located in which city?", options: ["Rome", "Athens", "Cairo", "Istanbul"], answer: "Athens" },
+    { q: "Which element do diamonds consist of?", options: ["Silicon", "Carbon", "Oxygen", "Boron"], answer: "Carbon" },
+    { q: "Who was the second person to walk on the moon?", options: ["Neil Armstrong", "Michael Collins", "Buzz Aldrin", "Yuri Gagarin"], answer: "Buzz Aldrin" },
+    { q: "What is the name of the river that flows through Paris?", options: ["Rhine", "Danube", "Seine", "Loire"], answer: "Seine" }
   ];
-
 
   let currentQIndex = 0;
   let userAnswers = [];
@@ -364,22 +351,20 @@
   const startBtn = document.getElementById("startBtn");
   const submitBtn = document.getElementById("submitBtn");
   const quizInstructions = document.getElementById("quizInstructions");
-  const momoDetailsSection = document.getElementById("momoDetails");
+  const prizeDetailsSection = document.getElementById("prizeDetails");
   const completeMessageSection = document.getElementById("completeMessage");
-  const momoForm = document.getElementById("momoForm");
+  const prizeForm = document.getElementById("prizeForm");
 
-  // Save quiz state to localStorage
   function saveQuizState() {
     localStorage.setItem('currentQIndex', currentQIndex);
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
   }
   
-  // Display the current question and options
   function displayCurrentQuestion() {
     if (currentQIndex < questions.length) {
       const questionData = questions[currentQIndex];
       questionBox.innerText = questionData.q;
-      optionsContainer.innerHTML = ''; // Clear previous options
+      optionsContainer.innerHTML = ''; 
 
       questionData.options.forEach(option => {
         const button = document.createElement('button');
@@ -396,7 +381,6 @@
     }
   }
 
-  // Handle answer selection and trigger next step
   function selectAnswerAndProceed(selectedOption) {
     userAnswers.push({ question: questions[currentQIndex].q, answer: selectedOption });
     currentQIndex++;
@@ -404,7 +388,6 @@
     window.location.reload();
   }
 
-  // Function to start the quiz
   function startQuiz() {
     currentQIndex = 0;
     userAnswers = [];
@@ -413,7 +396,6 @@
     window.location.reload();
   }
 
-  // Load quiz state from localStorage on page load
   function loadQuizState() {
     const quizStarted = localStorage.getItem('quizStarted');
     if (quizStarted !== 'true') {
@@ -439,40 +421,35 @@
     }
   }
 
-  // Show the MoMo details form
-  function showMomoDetails() {
-    console.log("All collected answers:", userAnswers); // For debugging
+  function showPrizeDetails() {
+    console.log("All collected answers:", userAnswers); 
     document.getElementById("quizBox").style.display = "none";
-    momoDetailsSection.style.display = "block";
+    prizeDetailsSection.style.display = "block";
 
-    // Clear quiz state from localStorage
     localStorage.removeItem('currentQIndex');
     localStorage.removeItem('userAnswers');
     localStorage.removeItem('quizStarted');
   }
 
-  // Handle MoMo form submission
-  momoForm.addEventListener('submit', function(event) {
+  prizeForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    const momoNumber = document.getElementById("momoNumber").value.trim();
     const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
 
-    if (!momoNumber || !fullName) {
-      alert("Please fill in all MoMo details.");
+    if (!fullName || !email) {
+      alert("Please fill in all details.");
       return;
     }
 
     // In a real application, you would send this data to a server.
-    // For now, we simulate success.
-    console.log("MoMo Number:", momoNumber);
     console.log("Full Name:", fullName);
+    console.log("Email:", email);
     console.log("User answers submitted:", userAnswers);
 
-    momoDetailsSection.style.display = "none";
+    prizeDetailsSection.style.display = "none";
     completeMessageSection.style.display = "block";
   });
 
-  // Load state when the page loads
   document.addEventListener('DOMContentLoaded', loadQuizState);
 
 </script>
