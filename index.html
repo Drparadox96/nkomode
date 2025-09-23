@@ -396,7 +396,7 @@
     window.location.reload();
   }
 
-  function loadQuizState() {
+function loadQuizState() {
     const quizStarted = localStorage.getItem('quizStarted');
     if (quizStarted !== 'true') {
       questionBox.innerText = "Click Start to begin";
@@ -417,6 +417,10 @@
       quizInstructions.innerText = "Congratulations! Click 'Submit' to enter the draw.";
       adsBox.style.display = "block";
     } else {
+      // ✅ ADD THIS LINE RIGHT BEFORE DISPLAYING THE QUESTION
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_question', { 'question_number': currentQIndex + 1 });
+      }
       displayCurrentQuestion();
     }
   }
