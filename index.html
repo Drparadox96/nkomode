@@ -1,11 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script>
-    window.location.href = "https://t.me/+ime-uq06QX0wZjM0";
-  </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167"
+     crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win 10,000 GHS! Giveaway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
 </head>
-<body>
-  <p>Redirecting...</p>
+<body class="bg-gradient-to-br from-green-400 via-yellow-400 to-red-500 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-md w-full text-center space-y-6">
+
+        <div>
+            <h1 class="text-4xl font-bold text-gray-800">Win 1000 GHS! 💰</h1>
+            <p class="text-gray-600 mt-2">Follow the steps below to enter the giveaway.</p>
+        </div>
+
+        <!-- STEP 1 -->
+        <div id="step1" class="hidden">
+            <h2 class="font-semibold text-lg"><span class="bg-yellow-400 px-2 py-1 rounded-md mr-2">Step 1</span> Share this page</h2>
+            <p class="text-sm text-gray-500 mt-1 ml-12">Share on WhatsApp to qualify.</p>
+            <a href="whatsapp://send?text=Wow! Check out this site for a chance to win 1000 GHS! 👉 [YOUR_WEBSITE_LINK_HERE]"
+               id="shareBtn"
+               class="mt-2 w-full inline-block bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 text-center">
+                📲 Share on WhatsApp
+            </a>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step2" class="hidden">
+            <h2 class="font-semibold text-lg"><span class="bg-yellow-400 px-2 py-1 rounded-md mr-2">Step 2</span> Enter Your Number</h2>
+            <p class="text-sm text-gray-500 mt-1 ml-12">Enter your number to lock in your entry. We don't store your data.</p>
+            <div class="flex flex-col sm:flex-row gap-2 mt-2">
+                <input type="tel" id="phoneNumber" placeholder="e.g., 0241234567" class="flex-grow p-3 border-2 border-gray-300 rounded-lg">
+                <button id="submitBtn" class="bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-colors duration-300">
+                    Enter Now
+                </button>
+            </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div id="successMessage" class="hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg" role="alert">
+            <p class="font-bold">You're in! 🎉</p>
+            <p>Your entry is confirmed. Winners will be announced randomly.</p>
+        </div>
+
+        <!-- STEP 3 Treasure Hunt -->
+        <div id="treasureHunt" class="hidden space-y-3">
+            <h2 class="text-2xl font-bold text-gray-800">Bonus Treasure Hunt 🕵️‍♀️</h2>
+            <p class="text-gray-600">Solve this riddle for a fun surprise! The answer is a 3-letter word found on this page.</p>
+            <p class="italic text-gray-700">"What has an eye, but cannot see?"</p>
+            <input type="text" id="treasureAnswer" placeholder="Type your 3-letter answer here"
+                   class="w-full p-3 border-2 border-gray-300 rounded-lg text-center">
+            <div id="treasureSuccess" class="hidden text-5xl p-4">
+                <p>🪡</p>
+                <p class="text-lg font-semibold text-green-600">You found it!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Restore progress from localStorage
+        const progress = localStorage.getItem('giveawayProgress') || 'step1';
+
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const successMessage = document.getElementById('successMessage');
+        const treasureHunt = document.getElementById('treasureHunt');
+
+        if (progress === 'step1') step1.classList.remove('hidden');
+        if (progress === 'step2') step2.classList.remove('hidden');
+        if (progress === 'done') {
+            successMessage.classList.remove('hidden');
+            treasureHunt.classList.remove('hidden');
+        }
+
+        // Step 1 logic
+        const shareBtn = document.getElementById('shareBtn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', function() {
+                setTimeout(() => {
+                    localStorage.setItem('giveawayProgress', 'step2');
+                    location.reload(); // refresh to load ads & next step
+                }, 2000);
+            });
+        }
+
+        // Step 2 logic
+        const submitBtn = document.getElementById('submitBtn');
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function() {
+                if (phoneNumberInput.value.trim().length > 8 && !isNaN(phoneNumberInput.value)) {
+                    localStorage.setItem('giveawayProgress', 'done');
+                    location.reload(); // refresh to load ads & next step
+                } else {
+                    alert('Please enter a valid Ghanaian phone number.');
+                }
+            });
+        }
+
+        // Treasure hunt
+        const treasureAnswerInput = document.getElementById('treasureAnswer');
+        const treasureSuccess = document.getElementById('treasureSuccess');
+        const correctAnswer = 'win';
+
+        if (treasureAnswerInput) {
+            treasureAnswerInput.addEventListener('input', function() {
+                if (treasureAnswerInput.value.trim().toLowerCase() === correctAnswer) {
+                    treasureSuccess.classList.remove('hidden');
+                } else {
+                    treasureSuccess.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6SJZ70KE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P6SJZ70KE6');
+    </script>
 </body>
 </html>
