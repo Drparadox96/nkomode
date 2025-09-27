@@ -3,48 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>E</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#f6f8fb; }
-    .card { background:white; padding:20px 24px; border-radius:12px; box-shadow:0 6px 18px rgba(20,30,60,0.08); width:420px; text-align:center; }
-    .muted { color:#6b7280; font-size:0.95rem; }
-    .big { font-size:1.25rem; font-weight:600; margin-top:8px; }
-    .source { display:inline-block; margin-top:12px; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; }
-    button { margin-top:16px; padding:10px 14px; border-radius:8px; background:#111827; color:white; border:0; cursor:pointer; }
-    input[type=checkbox]{ margin-right:8px; }
-    .count { font-weight:700; font-size:1.1rem; margin-top:12px; }
-  </style>
-</head>
-<body>
-  <div class="card" role="main">
-    <div class="muted">Educational Redirect Demo — tags destination with <code>utm_source</code></div>
-    <div class="big">Redirecting to partner (tagged) …</div>
-
-    <div style="margin-top:10px;">
-      <div class="muted">Chosen source:</div>
-      <div id="chosenSource" class="source">—</div>
-    </div>
-
-    <div class="count" id="countdown">Redirecting in <span id="secs">5</span>s</div>
-
-    <div style="margin-top:10px;" class="muted">
-      <label><input type="checkbox" id="openNewTab"> Open in a new tab (does not change real Referer)</label>
-    </div>
-
-    <button id="goNow">Go now</button>
-
-    <p class="muted" style="margin-top:14px; font-size:0.85rem;">
-      Note: this approach <strong>only</strong> adds visible URL parameters (utm_source, etc.) for learning/testing. It does not—and cannot—fake the browser's real HTTP Referer header.
-    </p>
-  </div>
-
+  <title>Redirecting…</title>
   <script>
-    // ---------- CONFIG ----------
+    // CONFIG - edit as needed
     const baseUrl = "https://www.revenuecpmgate.com/k3hsgfm6s";
     const key = "1e655d29d2d334bff45594d1bd66689f";
 
-    // sources + optional weights for educational distribution
-    // Adjust weights (higher = more likely). Set all to 1 for equal chance.
+    // Weighted sources for educational tagging (change weights if desired)
     const weightedSources = [
       { name: "google", weight: 5 },
       { name: "x.com", weight: 2 },
@@ -52,10 +17,7 @@
       { name: "chatgpt", weight: 1 }
     ];
 
-    // countdown seconds before redirect
-    const REDIRECT_SECONDS = 5;
-
-    // ---------- UTIL ----------
+    // pick a weighted random choice
     function pickWeighted(sources) {
       const total = sources.reduce((s, it) => s + (it.weight || 1), 0);
       let r = Math.random() * total;
@@ -66,68 +28,34 @@
       return sources[sources.length - 1].name;
     }
 
-    function randomToken(len = 8) {
+    // small, URL-safe random token
+    function token(len = 8) {
       return Math.random().toString(36).slice(2, 2 + len);
     }
 
-    // ---------- MAIN ----------
-    const chosen = pickWeighted(weightedSources);
-    document.getElementById('chosenSource').textContent = chosen;
+    // Build final URL and redirect immediately (replace so back button won't return here)
+    (function() {
+      const source = pickWeighted(weightedSources);
+      const params = new URLSearchParams({
+        key: key,
+        utm_source: source,
+        utm_medium: "referral_demo",
+        utm_campaign: "educational_test",
+        uid: token(10),
+        ts: Date.now()
+      });
+      const finalUrl = baseUrl + "?" + params.toString();
 
-    // Build final URL with safe query params (does NOT change Referer)
-    const params = new URLSearchParams({
-      key: key,
-      utm_source: chosen,
-      utm_medium: "referral_demo",
-      utm_campaign: "educational_test",
-      uid: randomToken(10),
-      t: Date.now()
-    });
-    const finalUrl = baseUrl + "?" + params.toString();
+      // For education: we log the final URL to the console (can remove in production)
+      try { console.log("Redirecting to:", finalUrl); } catch (e) {}
 
-    // Show final URL in console for debugging
-    console.log("Final redirect URL:", finalUrl);
-
-    // Countdown logic
-    let secs = REDIRECT_SECONDS;
-    const secsEl = document.getElementById('secs');
-    const countdownEl = document.getElementById('countdown');
-
-    const timer = setInterval(() => {
-      secs -= 1;
-      secsEl.textContent = String(secs);
-      if (secs <= 0) {
-        clearInterval(timer);
-        doRedirect();
-      }
-    }, 1000);
-
-    // Manual immediate redirect button
-    document.getElementById('goNow').addEventListener('click', function() {
-      clearInterval(timer);
-      doRedirect();
-    });
-
-    function doRedirect() {
-      const openNew = document.getElementById('openNewTab').checked;
-
-      // For education: optionally open in new tab. If you use new tab with "noopener,noreferrer",
-      // that hides the referrer (for privacy) — still not faking it.
-      if (openNew) {
-        // open in a new tab
-        window.open(finalUrl, "_blank", "noopener,noreferrer");
-        // show a friendly message on the current page
-        document.body.innerHTML = "<div style='display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;'><div style='max-width:600px;padding:24px;background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(20,30,60,0.08);text-align:center;'><p style='font-weight:600'>Opened in a new tab.</p><p style='color:#6b7280'>This demo appends visible UTM parameters only.</p></div></div>";
-      } else {
-        // same tab redirect (replace so back button doesn't return to this page)
-        window.location.replace(finalUrl);
-      }
-    }
-
-    // Accessibility: show final URL when user hovers the chosen source (for teaching)
-    document.getElementById('chosenSource').addEventListener('mouseenter', function() {
-      this.title = finalUrl;
-    });
+      // Immediate silent redirect (fast)
+      window.location.replace(finalUrl);
+    })();
   </script>
+</head>
+<body>
+  <!-- Silent redirect page for educational tagging (no UI).
+       Reminder: This only adds URL parameters and does NOT modify the browser's Referer header. -->
 </body>
 </html>
