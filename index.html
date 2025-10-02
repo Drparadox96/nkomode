@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forex Funnel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-green-200 via-green-100 to-green-200 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 text-center space-y-6">
+    <!-- Header -->
+    <h1 class="text-3xl font-bold text-green-700">💸 Want to Make Money Trading Forex? 💸</h1>
+    <p class="text-gray-600 text-lg">Choose the option that best fits you 👇</p>
 
-  <!-- Meta Refresh Redirect -->
-  <meta http-equiv="refresh" content="0;url=https://nkomode.com/">
+    <!-- Step 1 Buttons -->
+    <div id="step1" class="space-y-4">
+      <button onclick="showStep2()" class="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-green-700 transition">Yes! Show Me How 🤑</button>
+    </div>
 
-  <!-- Canonical Tag for SEO -->
-  <link rel="canonical" href="https://nkomode.com/">
+    <!-- Step 2 -->
+    <div id="step2" class="hidden space-y-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Do you already know how to trade? 📈</h2>
+
+      <div class="space-y-4">
+        <a href="https://t.me/drparadoxfx" target="_blank" class="block bg-blue-600 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-blue-700 transition">I just want Forex Signals 🔥</a>
+        <a href="https://t.me/bigtinn" target="_blank" class="block bg-yellow-500 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-yellow-600 transition">I want to Learn Trading 🎓</a>
+      </div>
+    </div>
+
+  </div>
 
   <script>
-    // JavaScript Redirect Fallback
-    (function() {
-      var newURL = "https://nkomode.com/";
-      if (window.location.hostname === "nkomode.com") {
-        window.location.replace(newURL); // acts like a 301 (no back button history)
-      }
-    })();
+    function showStep2() {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
   </script>
-</head>
-<body>
-  <p>If you are not redirected automatically, 
-     <a href="https://nkomode.com/">click here</a>.</p>
 </body>
 </html>
