@@ -1,74 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script charset="UTF-8" src="//web.webpushs.com/js/push/dd9bdacf38f9f3acc4dddba4ce22aa80_1.js" async></script>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Preview — Click to Allow</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
-    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071023 0%, #081226 100%);color:#e6eef6}
-    .card{width:min(680px,94vw);background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);text-align:center}
-    .preview-wrap{display:flex;flex-direction:column;gap:18px;align-items:center}
-    img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 6px 20px rgba(2,6,23,0.5)}
-    .btn{appearance:none;border:0;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;background:linear-gradient(90deg,var(--accent),#0ea5a4);color:#022;box-shadow:0 6px 18px rgba(3,7,18,0.6)}
-    .hint{font-size:13px;opacity:0.8}
-    @media (max-width:420px){.card{padding:18px}}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nkomode - Ghana Connect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <main class="card" role="main" aria-labelledby="title">
-    <h1 id="title" style="margin:0 0 8px;font-size:20px">Preview</h1>
-
-    <div class="preview-wrap">
-      <!-- Place preview.PNG in the same folder as this HTML file -->
-      <img src="preview.PNG" alt="Preview image" id="previewImage">
-
-      <button class="btn" id="allowBtn" aria-label="Allow to watch">Allow to watch</button>
-      <p class="hint">Click the button to allow playback. This demo shows an alert for demo purposes.</p>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-400 via-red-500 to-green-600 text-white p-6">
+  <div id="app" class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-full max-w-md text-center">
+    <div id="step1">
+      <h1 class="text-3xl font-bold mb-4">🇬🇭 Are you Ghanaian?</h1>
+      <div class="flex justify-center gap-4">
+        <button onclick="nextStep('yes')" class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-full text-white font-semibold shadow-md">Yes</button>
+        <button onclick="nextStep('no')" class="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-full text-white font-semibold shadow-md">No</button>
+      </div>
     </div>
-  </main>
+
+    <div id="step2" class="hidden">
+      <h1 class="text-2xl font-bold mb-4">Nice! What do you want to do?</h1>
+      <div class="flex flex-col gap-4">
+        <button onclick="chooseOption('friends')" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl text-white font-semibold shadow-md">🤝 Make Friends</button>
+        <button onclick="chooseOption('money')" class="bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded-xl text-white font-semibold shadow-md">💰 Make Money</button>
+      </div>
+    </div>
+
+    <div id="step3" class="hidden">
+      <h1 class="text-2xl font-bold mb-4">No problem! Everyone’s welcome 🌍</h1>
+      <p class="text-lg mb-6">Visit <a href="https://nkomode.com" class="underline font-semibold">nkomode.com</a> to join our global community.</p>
+      <button onclick="restart()" class="bg-white text-black rounded-full px-6 py-2 hover:bg-gray-200">Start Over</button>
+    </div>
+
+    <div id="step4" class="hidden">
+      <h1 id="final-title" class="text-3xl font-bold mb-4"></h1>
+      <p id="final-text" class="text-lg mb-6"></p>
+      <button onclick="restart()" class="bg-white text-black rounded-full px-6 py-2 hover:bg-gray-200">Restart</button>
+    </div>
+  </div>
 
   <script>
-    const btn = document.getElementById('allowBtn');
-    const img = document.getElementById('previewImage');
-
-    function showAlertAndPlay(){
-      // This simulates "allowing" playback — replace with real logic (e.g., start video) if needed
-      alert('Allowed — now playing!');
-    }
-
-    // Click handlers for both the button and the image
-    btn.addEventListener('click', showAlertAndPlay);
-    img.addEventListener('click', showAlertAndPlay);
-
-    // Accessibility: allow Enter/Space on focused button
-    btn.addEventListener('keyup', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){
-        showAlertAndPlay();
-      }
-    });
-  </script>
-
-    
-  <script>
-    function showStep2() {
+    function nextStep(answer) {
       document.getElementById('step1').classList.add('hidden');
-      document.getElementById('step2').classList.remove('hidden');
+      if (answer === 'yes') {
+        document.getElementById('step2').classList.remove('hidden');
+      } else {
+        document.getElementById('step3').classList.remove('hidden');
+      }
+    }
+
+    function chooseOption(option) {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step4').classList.remove('hidden');
+      if (option === 'friends') {
+        document.getElementById('final-title').innerText = '🎉 Awesome!';
+        document.getElementById('final-text').innerHTML = 'You can meet new people and make friends at <a href="https://nkomode.com" class="underline font-semibold">nkomode.com</a>.';
+      } else {
+        document.getElementById('final-title').innerText = '💵 Great Choice!';
+        document.getElementById('final-text').innerHTML = 'You can learn and earn money online at <a href="https://nkomode.com" class="underline font-semibold">nkomode.com</a>.';
+      }
+    }
+
+    function restart() {
+      document.querySelectorAll('#app > div').forEach(div => div.classList.add('hidden'));
+      document.getElementById('step1').classList.remove('hidden');
     }
   </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6SJZ70KE6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P6SJZ70KE6');
-</script>
 </body>
 </html>
-
-
